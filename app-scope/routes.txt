@@ -1,0 +1,55 @@
+// ** USER ROUTES **
+
+// @route   POST api/users
+// @desc    Create User
+// @access  Public
+
+// @route   DEL api/users/:userId
+// @desc    delete user and user exercises and profile
+// @access  Private
+
+// ** AUTH ROUTES **
+
+// @route   GET /api/auth
+// @desc    get user by token
+// @access  Public
+
+// @route   POST /api/auth
+// @desc    Authenticate user and get token
+// @access  Public
+
+// ** Profile ROUTES **
+
+// @route   GET api/profiles
+// @desc    Get all profiles
+// @access  Private
+
+// @route   POST api/profiles
+// @desc    create Profile data (fitness level, activities, bio, calories)
+// @access  Private
+
+// @route   PATCH api/profiles/:userId
+// @desc    update profile data (fitness level, activities, bio, calories)
+// @access  Private
+
+// @route   DELETE api/profiles/:userId
+// @desc    delete profile data (fitness level, activities, bio, calories)
+// @access  Private
+
+// ** EXERCISES ROUTE **
+
+// @route   GET api/exercises
+// @desc    Get all public exercises
+// @access  Public
+
+// @route   POST api/exercises
+// @desc    Create a user exercises
+// @access  Private
+
+// @route   PATCH api/exercies/:id
+// @desc    Update a user exercise
+// @access  Private
+
+// @route   DEL api/exercises/:id
+// @desc    Delete exercise by id
+// @access  Private

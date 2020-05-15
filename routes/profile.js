@@ -1,5 +1,6 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
+const _ = require('lodash');
 
 const auth = require('../middleware/auth');
 const Profile = require('../models/Profile');
@@ -16,6 +17,7 @@ router.get('/', async (req, res) => {
       'firstName',
       'lastName',
       'date',
+      'avatar',
     ]);
 
     res.json(profiles);
@@ -75,10 +77,21 @@ router.post(
     try {
       let profile = await Profile.findOne({ user: req.user.id });
 
-      const { bio, activities, dailyCaloriesGoal } = req.body;
+      if (profile) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Profile already exists' }] });
+      }
+
+      const { bio, activities, dailyCaloriesGoal, avatar } = req.body;
 
       // set fields in profile model
-      const profileFields = { bio, dailyCaloriesGoal, user: req.user.id };
+      const profileFields = {
+        bio,
+        dailyCaloriesGoal,
+        user: req.user.id,
+        avatar,
+      };
 
       if (Array.isArray(activities)) {
         profileFields.activities = activities;
@@ -88,20 +101,89 @@ router.post(
           .map(activity => activity.trim());
       }
 
-      // update profile
-      if (profile) {
-        profile = await Profile.findByIdAndUpdate(
-          // filter / selection criteria
-          { user: req.user.id },
-          // sets fields in model
-          { $set: profileFields },
-          // applies formatting
-          { new: true }
-        );
-      } else {
-        // create profile
-        profile = await new Profile(profileFields);
+      // create profile
+      profile = await new Profile(profileFields);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).send('Server Error.');
+    }
+  }
+);
+
+// @route   PATCH /api/profiles/
+// @desc    Create and update profile
+// @access  Private
+
+router.patch(
+  '/',
+  [
+    auth,
+    check('bio', 'Bio is required')
+      .not()
+      .isEmpty(),
+    check('activities', 'Activities is required')
+      .not()
+      .isEmpty(),
+    check('dailyCaloriesGoal', 'Calories goal is required')
+      .not()
+      .isEmpty(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    // check for errors in request
+    if (!errors.isEmpty()) {
+      return res.status(400).send({ errors: errors.array() });
+    }
+
+    try {
+      let profile = await Profile.findOne({ user: req.user.id });
+
+      if (!profile) {
+        return res.status(400).json({ errors: [{ msg: 'No profile found.' }] });
       }
+
+      const { id } = profile;
+      const { bio, activities, dailyCaloriesGoal, avatar } = req.body;
+
+      // set fields in profile model
+      const profileFields = {
+        bio,
+        dailyCaloriesGoal,
+        avatar,
+      };
+
+      if (Array.isArray(activities)) {
+        profileFields.activities = activities;
+      } else {
+        profileFields.activities = activities
+          .split(',')
+          .map(activity => activity.trim());
+      }
+
+      if (
+        bio === profile.bio &&
+        avatar === profile.avatar &&
+        _.isEqual(activities, profile.activities)
+      ) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'No changes were made.' }] });
+      }
+
+      // update profile
+      profile = await Profile.findByIdAndUpdate(
+        // filter / selection criteria
+        { _id: id },
+        // sets fields in model
+        { $set: profileFields },
+        // applies formatting
+        { new: true }
+      );
 
       await profile.save();
 

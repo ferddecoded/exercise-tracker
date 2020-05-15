@@ -16,6 +16,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    'no-trailing-spaces': 2,
     'no-debugger': 0,
     'no-alert': 0,
     'no-await-in-loop': 0,

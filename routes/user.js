@@ -5,6 +5,9 @@ const { check, validationResult } = require('express-validator');
 const config = require('config');
 
 const User = require('../models/User');
+const Profile = require('../models/Profile');
+const Workout = require('../models/Workout');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -89,5 +92,36 @@ router.post(
     }
   }
 );
+
+// @route   Delete /users
+// @desc    Delete user, profile, and workouts
+// @access  Private
+
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove Workouts
+    await Workout.deleteMany({ user: req.user.id });
+    // Find Profile of user
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    if (profile) {
+      // delete profile
+      await profile.remove();
+    }
+
+    // Remove User
+    const user = await User.findOne({ _id: req.user.id });
+
+    if (user) {
+      // delete user
+      await user.remove();
+    }
+
+    res.json({ msg: 'User deleted' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

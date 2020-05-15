@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 // @desc    Get profile by id
 // @access  Private
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.id,
@@ -195,7 +195,7 @@ router.patch(
   }
 );
 
-// @route   Delete /api/profiles/:id
+// @route   Delete /api/profiles/
 // @desc    delete profile
 // @access  Private
 
@@ -206,6 +206,12 @@ router.delete('/', auth, async (req, res) => {
 
     if (!profile) {
       return res.status(400).json({ msg: 'Profile not found.' });
+    }
+
+    if (!profile.user._id === req.user.id) {
+      return res
+        .status(400)
+        .json({ msg: 'You are not authorized to delete this workout' });
     }
 
     // delete profile

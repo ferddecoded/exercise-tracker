@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
   position: relative;
@@ -55,3 +56,8 @@ export const TextInput = ({ label, id }) => (
     <Label htmlFor={id}>{label}</Label>
   </Container>
 );
+
+TextInput.propTypes = {
+  label: PropTypes.string,
+  id: PropTypes.string,
+};

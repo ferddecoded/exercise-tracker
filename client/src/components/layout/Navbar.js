@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import AppWrapper from './AppWrapper';
 import { TextLink } from '../link/TextLink';
 import { H3 } from '../typography/Headings';
@@ -42,12 +41,12 @@ const Navbar = () => (
         </LogoContainer>
         <LinkList>
           <LinkItem>
-            <ButtonLink href="/" secondary>
+            <ButtonLink to="/" secondary routerLink>
               <Copy>Log In</Copy>
             </ButtonLink>
           </LinkItem>
           <LinkItem>
-            <ButtonLink secondary>
+            <ButtonLink to="/sign-up" secondary routerLink>
               <Copy>Sign Up</Copy>
             </ButtonLink>
           </LinkItem>

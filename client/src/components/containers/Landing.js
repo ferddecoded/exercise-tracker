@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled(Column)`
-  width: 33.33%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;

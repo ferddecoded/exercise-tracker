@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { loginUser as loginUserAction } from '../../actions/user';
+
 import { Row } from '../grid/Row';
 import { Box } from '../grid/Box';
 import { H4, H3 } from '../typography/Headings';
@@ -10,7 +15,7 @@ import { Copy } from '../typography/Copy';
 import { Image } from '../image/Image';
 import { TextInput } from '../formInputs/TextInput';
 import { TextLink } from '../link/TextLink';
-import { ButtonLink } from '../link/ButtonLink';
+import { Button } from '../buttons/Button';
 
 const Container = styled.div`
   margin-top: 48px;
@@ -20,7 +25,6 @@ const Container = styled.div`
 `;
 
 const LoginContainer = styled(Column)`
-  /* 10px is the width of the Divider */
   width: 33.33%;
   display: flex;
   flex-direction: column;
@@ -44,6 +48,7 @@ const InputContainer = styled.div`
 
 const StyledCopy = styled(Copy)`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const ImageContainer = styled(Box)`
@@ -122,65 +127,101 @@ const InfoItemText = styled(Box)`
   border-radius: 5px;
 `;
 
-const Landing = () => (
-  <>
-    <Container as="section">
-      <Row>
-        <LoginContainer>
-          <H3>Gymie</H3>
-          <Divider color="grey" />
-          <InputContainer>
-            <TextInput type="text" id="user" label="username" />
-            <TextInput type="text" id="password" label="password" />
-          </InputContainer>
-          <Divider color="grey" />
-          <ButtonLink href="/">
-            <Copy>Log In</Copy>
-          </ButtonLink>
-          <StyledCopy>
-            Don't have an account? &nbsp;
-            <TextLink href="/sign-up" color="lightgrey">
-              Sign Up
-            </TextLink>
-          </StyledCopy>
-        </LoginContainer>
-        <ImageContainer>
-          <StyledImage src="./assets/duotone.png" alt="Weights" />
-        </ImageContainer>
-      </Row>
-    </Container>
+const Landing = ({ loginUser }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
-    <InfoContainer>
-      <InfoGroup>
-        <InfoItem>
-          <Icon className="fas fa-users" fontSize="40px"></Icon>
-          <InfoItemText>
-            <Copy>
-              Join a community to train and see your continued growth foster
-              together.
-            </Copy>
-          </InfoItemText>
-        </InfoItem>
-        <InfoItem>
-          <Icon className="fas fa-running" fontSize="40px"></Icon>
-          <InfoItemText>
-            <Copy>
-              Create your workouts, see what others have listed as their
-              workouts, and count the calories you burn.
-            </Copy>
-          </InfoItemText>
-        </InfoItem>
-        <InfoItem>
-          <Icon className="fas fa-list-ul" fontSize="40px"></Icon>
-          <InfoItemText>
-            <Copy>
-              Track your progress, create and edit your workout routines.
-            </Copy>
-          </InfoItemText>
-        </InfoItem>
-      </InfoGroup>
-    </InfoContainer>
-  </>
-);
+  const onChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
 
-export default Landing;
+  const onSubmit = e => {
+    e.preventDefault();
+    loginUser(formData);
+  };
+
+  const { email, password } = formData;
+  return (
+    <>
+      <Container as="section">
+        <Row>
+          <LoginContainer as="form" onSubmit={onSubmit}>
+            <H3>Gymie</H3>
+            <Divider color="grey" />
+            <InputContainer>
+              <TextInput
+                type="text"
+                id="email"
+                label="email"
+                onChange={onChange}
+                value={email}
+              />
+              <TextInput
+                type="password"
+                id="password"
+                label="password"
+                onChange={onChange}
+                value={password}
+              />
+            </InputContainer>
+            <Divider color="grey" />
+            <Button href="/">
+              <Copy>Log In</Copy>
+            </Button>
+            <StyledCopy>
+              Don't have an account? &nbsp;
+              <TextLink href="/sign-up" color="lightgrey">
+                Sign Up
+              </TextLink>
+            </StyledCopy>
+          </LoginContainer>
+          <ImageContainer>
+            <StyledImage src="./assets/duotone.png" alt="Weights" />
+          </ImageContainer>
+        </Row>
+      </Container>
+
+      <InfoContainer>
+        <InfoGroup>
+          <InfoItem>
+            <Icon className="fas fa-users" fontSize="40px"></Icon>
+            <InfoItemText>
+              <Copy>
+                Join a community to train and see your continued growth foster
+                together.
+              </Copy>
+            </InfoItemText>
+          </InfoItem>
+          <InfoItem>
+            <Icon className="fas fa-running" fontSize="40px"></Icon>
+            <InfoItemText>
+              <Copy>
+                Create your workouts, see what others have listed as their
+                workouts, and count the calories you burn.
+              </Copy>
+            </InfoItemText>
+          </InfoItem>
+          <InfoItem>
+            <Icon className="fas fa-list-ul" fontSize="40px"></Icon>
+            <InfoItemText>
+              <Copy>
+                Track your progress, create and edit your workout routines.
+              </Copy>
+            </InfoItemText>
+          </InfoItem>
+        </InfoGroup>
+      </InfoContainer>
+    </>
+  );
+};
+
+Landing.propTypes = {
+  loginUser: PropTypes.func,
+};
+
+export default connect(null, { loginUser: loginUserAction })(Landing);

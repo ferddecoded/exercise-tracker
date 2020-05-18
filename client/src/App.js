@@ -2,11 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
+// Redux
+// eslint-disable-next-line import/order
+import { Provider } from 'react-redux';
+import store from './store';
+
 import AppContainer from './components/layout/AppContainer';
 import Nabvar from './components/layout/Navbar';
+import Alert from './components/layout/Alert';
 
 import themeObject from './theme';
 import Landing from './components/containers/Landing';
+import SignUp from './components/containers/SignUp';
 import AppWrapper from './components/layout/AppWrapper';
 
 const GlobalStyle = createGlobalStyle`
@@ -36,22 +43,31 @@ const GlobalStyle = createGlobalStyle`
   img {
     width: 100%;
   }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const App = () => (
-  <ThemeProvider theme={themeObject}>
-    <Router>
-      <AppContainer>
-        <Nabvar />
-        <GlobalStyle />
-        <Switch>
-          <AppWrapper as="main">
-            <Route exact path="/" component={Landing} />
-          </AppWrapper>
-        </Switch>
-      </AppContainer>
-    </Router>
-  </ThemeProvider>
+  <Provider store={store}>
+    <ThemeProvider theme={themeObject}>
+      <Router>
+        <AppContainer>
+          <Nabvar />
+          <GlobalStyle />
+          <Switch>
+            <AppWrapper as="main">
+              <Alert />
+              <Route exact path="/sign-up" component={SignUp} />
+              <Route exact path="/" component={Landing} />
+            </AppWrapper>
+          </Switch>
+        </AppContainer>
+      </Router>
+    </ThemeProvider>
+  </Provider>
 );
 
 export default App;

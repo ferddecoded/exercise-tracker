@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const SVG = styled.svg`
-  width: 100%;
-`;
 
 const Workout = props => (
-  <SVG
+  <svg
     id="f6ab8ba1-7e68-4bec-bb42-3789208a6270"
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +225,7 @@ const Workout = props => (
       fill="#d5fd45"
       opacity="0.3"
     />
-  </SVG>
+  </svg>
 );
 
 Workout.propTypes = {};

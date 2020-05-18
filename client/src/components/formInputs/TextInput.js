@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.div`
@@ -22,6 +22,7 @@ const Input = styled.input`
   background-color: ${({ theme }) => theme.grey};
 
   + label {
+    color: ${({ theme }) => theme.primaryColor};
     transform: translateY(0);
     background-color: ${({ theme }) => theme.grey};
   }
@@ -33,6 +34,15 @@ const Input = styled.input`
       transform: translateY(-20px);
     }
   }
+
+  ${({ value }) =>
+    value &&
+    css`
+      + label {
+        ${({ theme }) => theme.primaryColor};
+        transform: translateY(-20px);
+      }
+    `}
 `;
 
 const Label = styled('label')`
@@ -50,9 +60,9 @@ const Label = styled('label')`
   transform: translateY(-20px);
 `;
 
-export const TextInput = ({ label, id }) => (
+export const TextInput = ({ label, id, value, onChange, type }) => (
   <Container>
-    <Input type="text" id={id} />
+    <Input type={type} id={id} onChange={onChange} value={value} name={id} />
     <Label htmlFor={id}>{label}</Label>
   </Container>
 );
@@ -60,4 +70,7 @@ export const TextInput = ({ label, id }) => (
 TextInput.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  type: PropTypes.string,
 };

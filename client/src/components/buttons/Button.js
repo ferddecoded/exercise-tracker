@@ -10,6 +10,11 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.grey};
   background-color: ${({ theme }) => theme.primaryColor};
 
+  font-size: 16px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
   &:hover {
     color: ${({ theme }) => theme.primaryColor};
     background-color: ${({ theme }) => theme.grey};

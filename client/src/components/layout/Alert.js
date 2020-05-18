@@ -15,6 +15,7 @@ const AlertContainer = styled.div`
     type === 'danger' ? theme.primaryRed : theme.primaryColor};
   width: 100%;
   padding: 12px;
+  margin-bottom: 12px;
   border-radius: 5px;
   color: ${({ theme }) => theme.lightgrey};
 `;

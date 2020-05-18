@@ -21,8 +21,8 @@ export const Button = styled.button`
     border: 2px solid ${({ theme }) => theme.primaryColor};
   }
 
-  ${({ secondary }) =>
-    secondary &&
+  ${({ primary }) =>
+    primary &&
     css`
       border: 2px solid ${({ theme }) => theme.grey};
       color: ${({ theme }) => theme.primaryColor};

@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { connect } from 'react-redux';
 
 import { H3, H4 } from '../typography/Headings.js';
 import { Copy } from '../typography/Copy.js';
@@ -8,6 +9,9 @@ import Workout from '../svg/Workout';
 import { TextInput } from '../formInputs/TextInput.js';
 import { Button } from '../buttons/Button.js';
 import { Box } from '../grid/Box.js';
+import { Row } from '../grid/Row.js';
+import { Image } from '../image/Image.js';
+import { createUser as createUserAction } from '../../actions/user';
 
 const Container = styled(Box)`
   margin-top: 48px;
@@ -30,8 +34,9 @@ const FormContainer = styled.form`
 const FormGroup = styled(Box)`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  justify-content: center;
   width: 100%;
+  text-align: center;
 `;
 
 const FormSection = styled.section`
@@ -39,6 +44,22 @@ const FormSection = styled.section`
   padding: 0px 12px;
   input {
     margin-bottom: 12px;
+  }
+`;
+
+const AvatarContainer = styled(Row)``;
+
+const Avatar = styled(Box)`
+  width: calc(33.33% - 24px);
+  margin: 12px;
+
+  img {
+    ${({ selected }) =>
+      selected &&
+      css`
+        border-radius: 100%;
+        box-shadow: 0 8px 12px 0 rgba(213, 253, 69, 0.4);
+      `}
   }
 `;
 
@@ -52,42 +73,122 @@ const ButtonContainer = styled(Box)`
   justify-content: center;
 `;
 
-const SingUp = () => (
-  <Container>
-    <H3 fontColor="lightgrey">Sign Up For An Account</H3>
-    <Divider color="grey" />
-    <FormContainer>
-      <FormGroup>
-        <FormSection>
-          <H4>Credentials</H4>
-          <Copy fontColor="white">
-            Please enter an email that hasn't already been registered
-          </Copy>
-          <TextInput type="text" id="email" label="email" />
-          <Copy fontColor="white">Please enter a unique password</Copy>
-          <TextInput type="text" id="password" label="password" />
-          <TextInput type="text" id="password2" label="Reenter your password" />
-        </FormSection>
-        <FormSection>
-          <H4>About You</H4>
-          <Copy fontColor="white">What is your goal calories burn</Copy>
-          <TextInput
-            type="text"
-            id="dailyCaloriesGoal"
-            label="Calories Burn Goal"
-          />
-          <Copy fontColor="white">Please select an avatar</Copy>
-          <TextInput type="text" id="email" label="Avatar" />
-        </FormSection>
-      </FormGroup>
-      <ButtonContainer>
-        <Button>Register</Button>
-      </ButtonContainer>
-    </FormContainer>
-    <ImageContainer>
-      <Workout />
-    </ImageContainer>
-  </Container>
-);
+const SignUp = ({ createUser }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    password2: '',
+    avatar: '',
+    firstName: '',
+    lastName: '',
+  });
 
-export default SingUp;
+  const onChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    createUser(formData);
+  };
+
+  const { email, password, password2, avatar, firstName, lastName } = formData;
+
+  const avatarList = [
+    {
+      avatar: 'sportsman',
+    },
+    {
+      avatar: 'sportswoman',
+    },
+    {
+      avatar: 'dumbbell',
+    },
+    {
+      avatar: 'hand-grip',
+    },
+    {
+      avatar: 'kettlebell',
+    },
+    {
+      avatar: 'smartwatch',
+    },
+  ];
+  return (
+    <Container>
+      <H3 fontColor="primary">Sign Up For An Account</H3>
+      <Divider color="grey" />
+      <FormContainer onSubmit={onSubmit}>
+        <FormGroup>
+          <FormSection>
+            <H4 fontColor="primary">Credentials</H4>
+            <TextInput
+              type="text"
+              id="firstName"
+              label="firstName"
+              value={firstName}
+              onChange={onChange}
+            />
+            <TextInput
+              type="text"
+              id="lastName"
+              label="lastName"
+              value={lastName}
+              onChange={onChange}
+            />
+            <Copy fontColor="white">
+              Please enter an email that hasn't already been registered
+            </Copy>
+            <TextInput
+              type="text"
+              id="email"
+              label="email"
+              value={email}
+              onChange={onChange}
+            />
+            <Copy fontColor="white">Please enter a unique password</Copy>
+            <TextInput
+              type="password"
+              id="password"
+              label="password"
+              value={password}
+              onChange={onChange}
+            />
+            <TextInput
+              type="password"
+              id="password2"
+              label="Reenter your password"
+              value={password2}
+              onChange={onChange}
+            />
+            <Copy fontColor="white">Please select an avatar</Copy>
+            <AvatarContainer>
+              {avatarList.map(({ avatar: avatarType }) => (
+                <Avatar
+                  key={avatarType}
+                  selected={avatar === avatarType}
+                  onClick={() => {
+                    onChange({ target: { name: 'avatar', value: avatarType } });
+                  }}
+                >
+                  <Image src={`/assets/${avatarType}.png`} alt={avatarType} />
+                </Avatar>
+              ))}
+            </AvatarContainer>
+          </FormSection>
+        </FormGroup>
+        <ButtonContainer>
+          <Button type="register">Register</Button>
+        </ButtonContainer>
+      </FormContainer>
+      <ImageContainer>
+        <Workout />
+      </ImageContainer>
+    </Container>
+  );
+};
+
+export default connect(null, { createUser: createUserAction })(SignUp);

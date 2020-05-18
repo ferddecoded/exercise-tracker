@@ -5,10 +5,11 @@ export const TextLink = styled.a`
   display: flex;
   align-items: center;
   border-bottom: 5px solid transparent;
-  color: ${({ theme, color }) => color || theme.grey};
+  color: ${({ theme, fontColor }) => fontColor || theme.primaryColor};
   transition: ${({ theme }) => theme.defaultTransition};
 
   &:hover {
-    border-bottom: 5px solid ${({ theme, color }) => color || theme.grey};
+    border-bottom: 5px solid
+      ${({ theme, fontColor }) => fontColor || theme.primaryColor};
   }
 `;

@@ -54,10 +54,12 @@ const StyledCopy = styled(Copy)`
 const ImageContainer = styled(Box)`
   display: flex;
   justify-content: flex-end;
+  height: 500px;
 `;
 
 const StyledImage = styled(Image)`
   width: 66.66%;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled(Column)`
@@ -151,7 +153,7 @@ const Landing = ({ loginUser }) => {
       <Container as="section">
         <Row>
           <LoginContainer as="form" onSubmit={onSubmit}>
-            <H3>Gymie</H3>
+            <H3 fontColor="primary">Gymie</H3>
             <Divider color="grey" />
             <InputContainer>
               <TextInput
@@ -175,9 +177,7 @@ const Landing = ({ loginUser }) => {
             </Button>
             <StyledCopy>
               Don't have an account? &nbsp;
-              <TextLink href="/sign-up" color="lightgrey">
-                Sign Up
-              </TextLink>
+              <TextLink href="/sign-up">Sign Up</TextLink>
             </StyledCopy>
           </LoginContainer>
           <ImageContainer>

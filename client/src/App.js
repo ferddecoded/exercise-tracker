@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.5rem;
     line-height: 1.6;
     background-color: ${({ theme }) => theme.darkestGrey};
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.lightgrey};
   }
   a {
     text-decoration: none;

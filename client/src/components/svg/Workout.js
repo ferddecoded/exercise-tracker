@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Workout = props => (
+const Workout = () => (
   <svg
     id="f6ab8ba1-7e68-4bec-bb42-3789208a6270"
     data-name="Layer 1"
@@ -227,7 +226,5 @@ const Workout = props => (
     />
   </svg>
 );
-
-Workout.propTypes = {};
 
 export default Workout;

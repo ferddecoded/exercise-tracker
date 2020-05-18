@@ -34,19 +34,23 @@ const Navbar = () => (
     <AppWrapper>
       <Row>
         <LogoContainer>
-          <TextLink href="#">
-            <Icon className="fas fa-dumbbell" fontSize="40px"></Icon>
+          <TextLink href="#" fontColor="#3A3A3A">
+            <Icon
+              className="fas fa-dumbbell"
+              fontSize="40px"
+              color="#3A3A3A"
+            ></Icon>
             <H3>Gymie</H3>
           </TextLink>
         </LogoContainer>
         <LinkList>
           <LinkItem>
-            <ButtonLink to="/" secondary routerLink>
+            <ButtonLink to="/" primary="true" routerLink>
               <Copy>Log In</Copy>
             </ButtonLink>
           </LinkItem>
           <LinkItem>
-            <ButtonLink to="/sign-up" secondary routerLink>
+            <ButtonLink to="/sign-up" primary="true" routerLink>
               <Copy>Sign Up</Copy>
             </ButtonLink>
           </LinkItem>

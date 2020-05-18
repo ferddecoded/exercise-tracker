@@ -177,7 +177,9 @@ const Landing = ({ loginUser }) => {
             </Button>
             <StyledCopy>
               Don't have an account? &nbsp;
-              <TextLink href="/sign-up">Sign Up</TextLink>
+              <TextLink to="/sign-up" routerLink>
+                Sign Up
+              </TextLink>
             </StyledCopy>
           </LoginContainer>
           <ImageContainer>

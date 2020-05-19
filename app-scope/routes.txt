@@ -53,3 +53,7 @@
 // @route   DEL api/exercises/:id
 // @desc    Delete exercise by id
 // @access  Private
+
+// @route   GET /api/workouts/user/:id
+// @desc    Get all workouts by user
+// @access  Public

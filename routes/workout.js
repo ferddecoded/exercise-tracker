@@ -25,6 +25,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   GET /api/workouts/user/:id
+// @desc    Get all workouts by user
+// @access  Public
+
+router.get('/user/:id', async (req, res) => {
+  try {
+    const workouts = await Workout.find({
+      user: req.params.id,
+    }).populate('user', ['firstName', 'lastName', 'avatar']);
+
+    if (!workouts.length) {
+      return res.status(400).json({ msg: 'Workouts not found' });
+    }
+
+    res.json(workouts);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   GET /api/workouts/:id
 // @desc    Get all workouts
 // @access  Public

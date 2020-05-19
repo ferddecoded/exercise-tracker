@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { H3, H4 } from '../typography/Headings.js';
-import { Copy } from '../typography/Copy.js';
-import { Divider } from '../layout/Divider.js';
+import { H3, H4 } from '../typography/Headings';
+import { Copy } from '../typography/Copy';
+import { Divider } from '../layout/Divider';
 import Workout from '../svg/Workout';
-import { TextInput } from '../formInputs/TextInput.js';
-import { Button } from '../buttons/Button.js';
-import { Box } from '../grid/Box.js';
-import { Row } from '../grid/Row.js';
-import { Image } from '../image/Image.js';
+import { TextInput } from '../formInputs/TextInput';
+import { Button } from '../buttons/Button';
+import { Box } from '../grid/Box';
+import { Row } from '../grid/Row';
+import { Image } from '../image/Image';
 import { createUser as createUserAction } from '../../actions/user';
 
 const Container = styled(Box)`
@@ -52,12 +53,16 @@ const AvatarContainer = styled(Row)``;
 const Avatar = styled(Box)`
   width: calc(33.33% - 24px);
   margin: 12px;
+  transition: ${({ theme }) => theme.defaultTransition};
+  img {
+    border-radius: 100%;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0);
+  }
 
   img {
     ${({ selected }) =>
       selected &&
       css`
-        border-radius: 100%;
         box-shadow: 0 8px 12px 0 rgba(213, 253, 69, 0.4);
       `}
   }
@@ -189,6 +194,10 @@ const SignUp = ({ createUser }) => {
       </ImageContainer>
     </Container>
   );
+};
+
+SignUp.propTypes = {
+  createUser: PropTypes.func,
 };
 
 export default connect(null, { createUser: createUserAction })(SignUp);

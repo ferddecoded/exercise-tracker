@@ -15,6 +15,7 @@ import themeObject from './theme';
 import Landing from './components/containers/Landing';
 import SignUp from './components/containers/SignUp';
 import AppWrapper from './components/layout/AppWrapper';
+import Profile from './components/containers/Profile';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -60,6 +61,7 @@ const App = () => (
           <Switch>
             <AppWrapper as="main">
               <Alert />
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/" component={Landing} />
             </AppWrapper>

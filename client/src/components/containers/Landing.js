@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { loginUser as loginUserAction } from '../../actions/user';
 
@@ -129,7 +130,7 @@ const InfoItemText = styled(Box)`
   border-radius: 5px;
 `;
 
-const Landing = ({ loginUser }) => {
+const Landing = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -141,6 +142,10 @@ const Landing = ({ loginUser }) => {
       [target.name]: target.value,
     });
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/profile" />;
+  }
 
   const onSubmit = e => {
     e.preventDefault();
@@ -226,4 +231,8 @@ Landing.propTypes = {
   loginUser: PropTypes.func,
 };
 
-export default connect(null, { loginUser: loginUserAction })(Landing);
+const mapState = state => ({
+  isAuthenticated: state?.user.isAuthenticated,
+});
+
+export default connect(mapState, { loginUser: loginUserAction })(Landing);

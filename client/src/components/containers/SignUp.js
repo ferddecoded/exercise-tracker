@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { Redirect } from 'react-router-dom';
 import { H3, H4 } from '../typography/Headings';
 import { Copy } from '../typography/Copy';
 import { Divider } from '../layout/Divider';
@@ -78,7 +79,7 @@ const ButtonContainer = styled(Box)`
   justify-content: center;
 `;
 
-const SignUp = ({ createUser }) => {
+const SignUp = ({ createUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -122,6 +123,11 @@ const SignUp = ({ createUser }) => {
       avatar: 'smartwatch',
     },
   ];
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <Container>
       <H3 fontColor="primary">Sign Up For An Account</H3>
@@ -200,4 +206,8 @@ SignUp.propTypes = {
   createUser: PropTypes.func,
 };
 
-export default connect(null, { createUser: createUserAction })(SignUp);
+const mapState = state => ({
+  isAuthenticated: state?.user.isAuthenticated,
+});
+
+export default connect(mapState, { createUser: createUserAction })(SignUp);

@@ -4,6 +4,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOAD_USER,
+  AUTH_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -34,6 +35,7 @@ export default function userReducer(state = initialState, action) {
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
+    case AUTH_ERROR:
       return {
         ...state,
         isAuthenticated: false,

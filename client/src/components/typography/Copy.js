@@ -19,4 +19,13 @@ export const Copy = styled.p`
         font-size: 14px;
       }
     `}
+
+  ${({ large }) =>
+    large &&
+    css`
+      font-size: 20px;
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    `}
 `;

@@ -8,7 +8,7 @@ import { loginUser as loginUserAction } from '../../actions/user';
 
 import { Row } from '../grid/Row';
 import { Box } from '../grid/Box';
-import { H4, H3 } from '../typography/Headings';
+import { H3 } from '../typography/Headings';
 import { Column } from '../grid/Column';
 import { Icon } from '../typography/Icon';
 import { Divider } from '../layout/Divider';
@@ -68,39 +68,6 @@ const InfoContainer = styled(Column)`
   padding: 0px;
 `;
 
-const InfoHeading = styled(H4)`
-  text-decoration: underline;
-`;
-
-const Info = styled(Box)`
-  position: relative;
-  background: ${({ theme }) => theme.primaryColor};
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-radius: 5px;
-  margin-bottom: 48px;
-  width: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 50px 50px 0 50px;
-    border-color: ${({ theme }) =>
-      `${theme.primaryColor} transparent transparent transparent`};
-    left: 50%;
-    transform: translateX(-50%) translateY(100%);
-  }
-`;
-
 const InfoGroup = styled.ul`
   width: 100%;
   padding: 12px 0px 0px;
@@ -144,7 +111,7 @@ const Landing = ({ loginUser, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/dashboard" />;
   }
 
   const onSubmit = e => {

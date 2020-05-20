@@ -8,6 +8,7 @@ export const H1 = styled.h1`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 80px;
   @media (max-width: 768px) {
@@ -23,6 +24,7 @@ export const H2 = styled.h2`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 60px;
   @media (max-width: 768px) {
@@ -38,6 +40,7 @@ export const H3 = styled.h3`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 44px;
   @media (max-width: 768px) {
@@ -53,6 +56,7 @@ export const H4 = styled.h4`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 32px;
   @media (max-width: 768px) {
@@ -68,6 +72,7 @@ export const H5 = styled.h5`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 24px;
   @media (max-width: 768px) {
@@ -83,6 +88,7 @@ export const H6 = styled.h6`
     if (fontColor === 'tertiary') {
       return theme.primaryWhite;
     }
+    return fontColor;
   }};
   font-size: 18px;
   @media (max-width: 768px) {

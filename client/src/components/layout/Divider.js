@@ -8,7 +8,7 @@ export const Divider = styled.div`
   ${({ vertical }) =>
     vertical &&
     css`
-      width: 10px;
+      width: 5px;
       height: auto;
     `};
 `;

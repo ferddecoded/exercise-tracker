@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
   cursor: pointer;
-  padding: 12px 24px;
+  padding: 12px;
   margin: 12px;
   border-radius: 10px;
   transition: ${({ theme }) => theme.defaultTransition};
@@ -16,15 +16,15 @@ export const Button = styled.button`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.primaryColor};
     background-color: ${({ theme }) => theme.grey};
+    color: ${({ theme }) => theme.primaryColor};
     border: 2px solid ${({ theme }) => theme.primaryColor};
   }
 
   ${({ primary }) =>
     primary &&
     css`
-      border: 2px solid ${({ theme }) => theme.grey};
+      border: 2px solid ${({ theme }) => theme.primaryColor};
       color: ${({ theme }) => theme.primaryColor};
       background-color: ${({ theme }) => theme.grey};
 

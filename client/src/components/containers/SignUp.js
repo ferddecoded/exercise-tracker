@@ -204,6 +204,7 @@ const SignUp = ({ createUser, isAuthenticated }) => {
 
 SignUp.propTypes = {
   createUser: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapState = state => ({

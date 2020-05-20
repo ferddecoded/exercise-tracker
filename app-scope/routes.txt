@@ -20,6 +20,10 @@
 
 // ** Profile ROUTES **
 
+// @route   GET /api/profiles/:id
+// @desc    Get profile by id
+// @access  Private
+
 // @route   GET api/profiles
 // @desc    Get all profiles
 // @access  Private

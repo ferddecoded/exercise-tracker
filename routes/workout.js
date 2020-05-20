@@ -33,7 +33,9 @@ router.get('/user/:id', async (req, res) => {
   try {
     const workouts = await Workout.find({
       user: req.params.id,
-    }).populate('user', ['firstName', 'lastName', 'avatar']);
+    })
+      .populate('user', ['firstName', 'lastName', 'avatar'])
+      .sort({ date: -1 });
 
     if (!workouts.length) {
       return res.status(400).json({ msg: 'Workouts not found' });

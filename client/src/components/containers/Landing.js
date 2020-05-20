@@ -196,6 +196,7 @@ const Landing = ({ loginUser, isAuthenticated }) => {
 
 Landing.propTypes = {
   loginUser: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapState = state => ({

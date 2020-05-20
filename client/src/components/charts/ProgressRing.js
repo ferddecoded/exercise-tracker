@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { Box } from '../grid/Box';
 
 const Container = styled(Box)`
@@ -17,7 +19,7 @@ const BackgroundCircle = styled.circle`
 
 const ValueCircle = styled.circle`
   stroke: #212121;
-  transition: all 0.4s;
+  transition: all 1s;
 `;
 
 const ProgressRing = ({ progress, size, strokeSize, isPieChart = false }) => {
@@ -55,6 +57,13 @@ const ProgressRing = ({ progress, size, strokeSize, isPieChart = false }) => {
       </SVG>
     </Container>
   );
+};
+
+ProgressRing.propTypes = {
+  progress: PropTypes.number,
+  size: PropTypes.number,
+  strokeSize: PropTypes.number,
+  isPieChart: PropTypes.bool,
 };
 
 export default ProgressRing;

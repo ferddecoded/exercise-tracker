@@ -18,6 +18,8 @@ import AppWrapper from './components/layout/AppWrapper';
 import Dashboard from './components/containers/Dashboard';
 import { setAuthToken } from './utils/setAuthToken';
 import { loadUser } from './actions/user';
+import PrivateRoute from './components/routing/PrivateRoute';
+import Profile from './components/containers/Profile';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -75,7 +77,8 @@ const App = () => {
             <Switch>
               <AppWrapper as="main">
                 <Alert />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/profile" component={Profile} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route path="/" component={Landing} />
               </AppWrapper>

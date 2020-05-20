@@ -1,13 +1,13 @@
 import {
-  GET_PROFILE,
-  PROFILE_ERROR,
-  GET_PROFILES,
-  CLEAR_PROFILE,
+  GET_WORKOUT,
+  GET_WORKOUTS,
+  WORKOUT_ERROR,
+  CLEAR_WORKOUT,
 } from '../actions/types';
 
 const initialState = {
-  profiles: [],
-  profile: null,
+  workouts: [],
+  workout: null,
   loading: true,
   errors: {},
 };
@@ -16,28 +16,28 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_PROFILE:
+    case GET_WORKOUT:
       return {
         ...state,
-        profile: payload,
         loading: false,
+        workout: payload,
       };
-    case GET_PROFILES:
+    case GET_WORKOUTS:
       return {
         ...state,
-        profiles: payload,
         loading: false,
+        workouts: payload,
       };
-    case PROFILE_ERROR:
+    case WORKOUT_ERROR:
       return {
         ...state,
+        loading: false,
         errors: payload,
-        loading: false,
       };
-    case CLEAR_PROFILE:
+    case CLEAR_WORKOUT:
       return {
         ...state,
-        profile: null,
+        workout: null,
         loading: false,
       };
     default:

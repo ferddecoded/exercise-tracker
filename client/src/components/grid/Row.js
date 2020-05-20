@@ -5,4 +5,5 @@ export const Row = styled.div`
   width: 100%;
   flex-wrap: wrap;
   position: relative;
+  align-items: center;
 `;

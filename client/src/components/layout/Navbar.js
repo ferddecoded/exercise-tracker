@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import AppWrapper from './AppWrapper';
 import { TextLink } from '../link/TextLink';
 import { H3 } from '../typography/Headings';
@@ -29,7 +32,7 @@ const LinkItem = styled.li`
   align-items: center;
 `;
 
-const Navbar = () => (
+const Navbar = ({ auth: { isAuthenticated, loading } }) => (
   <Header>
     <AppWrapper>
       <Row>
@@ -43,21 +46,54 @@ const Navbar = () => (
             <H3>Gymie</H3>
           </TextLink>
         </LogoContainer>
-        <LinkList>
-          <LinkItem>
-            <ButtonLink to="/" primary="true" routerLink>
-              <Copy>Log In</Copy>
-            </ButtonLink>
-          </LinkItem>
-          <LinkItem>
-            <ButtonLink to="/sign-up" primary="true" routerLink>
-              <Copy>Sign Up</Copy>
-            </ButtonLink>
-          </LinkItem>
-        </LinkList>
+        {!loading && !isAuthenticated ? (
+          <LinkList>
+            <LinkItem>
+              <ButtonLink to="/" primary="true" routerLink>
+                <Copy>Log In</Copy>
+              </ButtonLink>
+            </LinkItem>
+            <LinkItem>
+              <ButtonLink to="/sign-up" primary="true" routerLink>
+                <Copy>Sign Up</Copy>
+              </ButtonLink>
+            </LinkItem>
+          </LinkList>
+        ) : (
+          <LinkList>
+            <LinkItem>
+              <ButtonLink to="/users" primary="true" routerLink>
+                <Copy>Users</Copy>
+              </ButtonLink>
+            </LinkItem>
+            <LinkItem>
+              <ButtonLink to="/profile" primary="true" routerLink>
+                <Copy>Profile</Copy>
+              </ButtonLink>
+            </LinkItem>
+            <LinkItem>
+              <ButtonLink to="/workouts" primary="true" routerLink>
+                <Copy>Workouts</Copy>
+              </ButtonLink>
+            </LinkItem>
+            <LinkItem>
+              <ButtonLink to="/dashboard" primary="true" routerLink>
+                <Copy>Dashboard</Copy>
+              </ButtonLink>
+            </LinkItem>
+          </LinkList>
+        )}
       </Row>
     </AppWrapper>
   </Header>
 );
 
-export default Navbar;
+Navbar.propTypes = {
+  auth: PropTypes.object,
+};
+
+const mapState = state => ({
+  auth: state.user,
+});
+
+export default connect(mapState)(Navbar);

@@ -13,9 +13,9 @@ const ContentContainer = styled.div`
   position: relative;
 `;
 
-const Workouts = ({ workouts }) => (
+const Workouts = ({ workouts, community }) => (
   <ContentContainer>
-    <H3>Your Workouts</H3>
+    <H3>{!community && 'Your'} Workouts</H3>
     <Divider color="grey" />
     {workouts && workouts.length
       ? workouts.map(workout => <Workout workout={workout} key={workout._id} />)
@@ -25,6 +25,7 @@ const Workouts = ({ workouts }) => (
 
 Workouts.propTypes = {
   workouts: PropTypes.array,
+  community: PropTypes.bool,
 };
 
 export default Workouts;

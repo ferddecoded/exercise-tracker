@@ -12,11 +12,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const workouts = await Workout.find().populate('user', [
-      'firstName',
-      'lastName',
-      'avatar',
-    ]);
+    const workouts = await Workout.find()
+      .populate('user', ['firstName', 'lastName', 'avatar'])
+      .sort({ date: -1 });
 
     res.json(workouts);
   } catch (error) {

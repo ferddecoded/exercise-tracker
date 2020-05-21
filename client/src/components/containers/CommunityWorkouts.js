@@ -64,7 +64,7 @@ const CommunityWorkouts = ({ getWorkouts, workouts }) => {
         </Row>
       </Container>
 
-      <Workouts workouts={workouts} />
+      <Workouts workouts={workouts} community />
     </>
   );
 };

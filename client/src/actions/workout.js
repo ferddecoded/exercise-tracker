@@ -18,3 +18,21 @@ export const getWorkoutsByUser = userId => async dispatch => {
     });
   }
 };
+
+export const getWorkouts = () => async dispatch => {
+  try {
+    const { data } = await axios.get(`/api/workouts`);
+    dispatch({
+      type: GET_WORKOUTS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: WORKOUT_ERROR,
+      payload: {
+        msg: error?.response?.statusText,
+        code: error?.response?.statusCode,
+      },
+    });
+  }
+};

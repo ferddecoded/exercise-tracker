@@ -60,8 +60,8 @@ const ActionsContainer = styled(Column)`
   align-items: center;
 `;
 
-const Workout = ({ profile, workout }) => {
-  if (!profile || !Object.keys(profile).length) {
+const Workout = ({ workout }) => {
+  if (!Object.keys(workout).length) {
     return null;
   }
   return (
@@ -69,7 +69,9 @@ const Workout = ({ profile, workout }) => {
       <WorkoutContainer>
         <AvatarContainer>
           <Image
-            src={profile?.avatar && `/assets/${profile.avatar}.png`}
+            src={
+              workout?.user?.avatar && `/assets/${workout?.user?.avatar}.png`
+            }
             alt="avatar image"
           />
           <StyledH4 color="primary">{workout.caloriesBurned}</StyledH4>
@@ -77,7 +79,7 @@ const Workout = ({ profile, workout }) => {
         </AvatarContainer>
         <Divider color="grey" vertical />
         <DetailsContainer>
-          <H4 color="primary">{`${profile.user.firstName} ${profile.user.lastName}`}</H4>
+          <H4 color="primary">{`${workout.user.firstName} ${workout.user.lastName}`}</H4>
           <Row>
             <WorkoutLabel>Description</WorkoutLabel>
             <Copy>{workout?.description}</Copy>
@@ -112,7 +114,6 @@ const Workout = ({ profile, workout }) => {
 };
 
 Workout.propTypes = {
-  profile: PropTypes.object,
   workout: PropTypes.object,
 };
 

@@ -54,6 +54,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           {!loading && !isAuthenticated ? (
             <LinkList>
               <LinkItem>
+                <ButtonLink to="/users" primary="true" routerLink>
+                  <Copy>Users</Copy>
+                </ButtonLink>
+              </LinkItem>
+              <LinkItem>
+                <ButtonLink to="/community-workouts" primary="true" routerLink>
+                  <Copy>Community</Copy>
+                </ButtonLink>
+              </LinkItem>
+              <LinkItem>
                 <ButtonLink to="/" primary="true" routerLink>
                   <Copy>Log In</Copy>
                 </ButtonLink>
@@ -77,8 +87,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 </ButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink to="/workouts" primary="true" routerLink>
-                  <Copy>Workouts</Copy>
+                <ButtonLink to="/community-workouts" primary="true" routerLink>
+                  <Copy>Community</Copy>
                 </ButtonLink>
               </LinkItem>
               <LinkItem>

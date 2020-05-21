@@ -10,16 +10,8 @@ import { H4, H3 } from '../typography/Headings';
 import { Box } from '../grid/Box';
 import { Copy } from '../typography/Copy';
 import ProgressRing from '../charts/ProgressRing';
-import { Divider } from '../layout/Divider';
-import Workout from '../workout/Workout';
+import Workouts from '../workout/Workouts';
 import Spinner from '../layout/Spinner';
-
-const ContentContainer = styled.div`
-  margin-top: 48px;
-  background-color: ${({ theme }) => theme.darkerGrey};
-  padding: 24px;
-  position: relative;
-`;
 
 const Container = styled(Box)`
   padding: 48px 0px;
@@ -148,15 +140,7 @@ const Dashboard = ({
         </InfoContainer>
       </InfoBox>
 
-      <ContentContainer>
-        <H3>Your Workouts</H3>
-        <Divider color="grey" />
-        {workouts.length
-          ? workouts.map(workout => (
-              <Workout profile={profile} workout={workout} key={workout._id} />
-            ))
-          : null}
-      </ContentContainer>
+      <Workouts profile={profile} workouts={workouts} />
     </Container>
   );
 };

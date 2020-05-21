@@ -13,6 +13,7 @@ import ProgressRing from '../charts/ProgressRing';
 import { Divider } from '../layout/Divider';
 import Workout from '../workout/Workout';
 import { Image } from '../image/Image';
+import Spinner from '../layout/Spinner';
 
 const ContentContainer = styled.div`
   margin-top: 48px;
@@ -31,7 +32,7 @@ const InfoBox = styled(Box)`
   text-align: center;
   border-radius: 5px;
   margin-bottom: 48px;
-  width: 100%;
+  width: 80%;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px;
@@ -78,12 +79,27 @@ const StyledCopy = styled(Copy)`
   color: ${({ theme }) => theme.primaryColor};
 `;
 
-const Profile = ({ getProfile, profile, user }) => {
+const Profile = ({
+  getProfile,
+  profile: { profile, loading: profileLoading },
+  user: { user, loading: userLoading },
+  workouts: { workouts, loading: workoutsLoading },
+  getWorkoutsByUser,
+}) => {
   useEffect(() => {
     if (user && user._id) {
       getProfile(user._id);
+      getWorkoutsByUser(user._id);
     }
-  }, [getProfile, user]);
+  }, [getProfile, getWorkoutsByUser, user]);
+
+  if (
+    (profileLoading && profile === null) ||
+    (userLoading && user === null) ||
+    (workoutsLoading && !workouts.length)
+  ) {
+    return <Spinner />;
+  }
 
   return (
     <Container>
@@ -105,13 +121,17 @@ Profile.propTypes = {
   profile: PropTypes.object,
   getProfile: PropTypes.func,
   user: PropTypes.object,
+  getWorkoutsByUser: PropTypes.func,
+  workouts: PropTypes.array,
 };
 
-const mapState = ({ profile, user }) => ({
-  profile: profile.profile,
-  user: user?.user,
+const mapState = ({ profile, user, workout }) => ({
+  profile,
+  user,
+  workouts: workout,
 });
 
 export default connect(mapState, {
   getProfile: getProfileAction,
+  getWorkoutsByUser: getWorkoutsByUserAction,
 })(Profile);

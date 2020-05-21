@@ -166,7 +166,7 @@ Dashboard.propTypes = {
   getProfile: PropTypes.func,
   user: PropTypes.object,
   getWorkoutsByUser: PropTypes.func,
-  workouts: PropTypes.array,
+  workouts: PropTypes.object,
 };
 
 const mapState = ({ profile, user, workout }) => ({

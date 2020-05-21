@@ -1,11 +1,14 @@
 import styled, { css } from 'styled-components';
 
 export const Copy = styled.p`
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `};
+  ${({ color, theme }) =>
+    color === 'primary'
+      ? css`
+          color: ${theme.primaryColor};
+        `
+      : css`
+          color: ${color};
+        `};
   font-size: 16px;
   @media (max-width: 768px) {
     font-size: 14px;

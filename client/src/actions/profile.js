@@ -2,6 +2,7 @@ import axios from 'axios';
 import { GET_PROFILE, PROFILE_ERROR } from './types';
 
 export const getProfile = profileId => async dispatch => {
+  console.log({ profileId });
   try {
     const res = await axios.get(`/api/profiles/${profileId}`);
     dispatch({ type: GET_PROFILE, payload: res.data });

@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 // @desc    Get profile by id
 // @access  Private
 
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.id,

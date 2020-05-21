@@ -6,11 +6,14 @@ import {
   REGISTER_FAIL,
   LOAD_USER,
   AUTH_ERROR,
+  LOGOUT,
+  CLEAR_PROFILE,
+  CLEAR_WORKOUT,
 } from './types';
 import { setAlert } from './alert';
 import { setAuthToken } from '../utils/setAuthToken';
 
-export const loadUser = async dispatch => {
+export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -44,7 +47,7 @@ export const loginUser = formData => async dispatch => {
     dispatch({ type: LOGIN_SUCCESS, payload: data });
 
     // load user into state
-    loadUser(dispatch);
+    dispatch(loadUser());
   } catch (error) {
     const { errors } = error?.response?.data;
     console.log({ errors });
@@ -75,7 +78,7 @@ export const createUser = formData => async dispatch => {
     dispatch({ type: REGISTER_SUCCESS, payload: data });
 
     // load user into state
-    loadUser(dispatch);
+    dispatch(loadUser());
   } catch (error) {
     const { errors } = error?.response?.data;
     console.log({ errors });
@@ -88,4 +91,10 @@ export const createUser = formData => async dispatch => {
 
     dispatch({ type: REGISTER_FAIL });
   }
+};
+
+export const logout = () => async dispatch => {
+  dispatch({ type: LOGOUT });
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_WORKOUT });
 };

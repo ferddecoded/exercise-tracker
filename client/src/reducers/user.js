@@ -5,6 +5,7 @@ import {
   REGISTER_FAIL,
   LOAD_USER,
   AUTH_ERROR,
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -36,8 +37,11 @@ export default function userReducer(state = initialState, action) {
     case REGISTER_FAIL:
     case LOGIN_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
+      localStorage.removeItem('token');
       return {
         ...state,
+        token: null,
         isAuthenticated: false,
         loading: false,
         user: null,

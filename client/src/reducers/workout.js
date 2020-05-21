@@ -37,6 +37,7 @@ export default function(state = initialState, action) {
     case CLEAR_WORKOUT:
       return {
         ...state,
+        workouts: [],
         workout: null,
         loading: false,
       };

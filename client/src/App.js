@@ -20,6 +20,7 @@ import { setAuthToken } from './utils/setAuthToken';
 import { loadUser } from './actions/user';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Profile from './components/containers/Profile';
+import ProfileById from './components/containers/ProfileById';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -64,7 +65,7 @@ if (localStorage.token) {
 const App = () => {
   // load user object if token is set in locaStorage
   useEffect(() => {
-    loadUser(store.dispatch);
+    store.dispatch(loadUser());
   }, []);
 
   return (
@@ -79,6 +80,7 @@ const App = () => {
                 <Alert />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/profile/:userId" component={ProfileById} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/" component={Landing} />
               </AppWrapper>

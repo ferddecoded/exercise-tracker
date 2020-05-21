@@ -14,7 +14,8 @@ import { Image } from '../image/Image';
 import Spinner from '../layout/Spinner';
 import { Column } from '../grid/Column';
 import { Row } from '../grid/Row';
-import { Button } from '../buttons/Button';
+import { Divider } from '../layout/Divider';
+import Workout from '../workout/Workout';
 
 const Container = styled(Box)`
   padding: 48px 0px;
@@ -80,23 +81,29 @@ const ProfileLabel = styled(H6)`
   width: 33.33%;
 `;
 
-const Profile = ({
+const ContentContainer = styled.div`
+  margin-top: 48px;
+  background-color: ${({ theme }) => theme.darkerGrey};
+  padding: 24px;
+  position: relative;
+`;
+
+const ProfileById = ({
   getProfile,
   profile: { profile, loading: profileLoading },
-  user: { user, loading: userLoading, isAuthenticated },
   workouts: { workouts, loading: workoutsLoading },
   getWorkoutsByUser,
+  match: { params },
 }) => {
   useEffect(() => {
-    if (user && user._id) {
-      getProfile(user._id);
-      getWorkoutsByUser(user._id);
+    if (params?.userId) {
+      getProfile(params.userId);
+      getWorkoutsByUser(params.userId);
     }
-  }, [getProfile, getWorkoutsByUser, user]);
+  }, [getProfile, getWorkoutsByUser, params]);
 
   if (
     (profileLoading && profile === null) ||
-    (userLoading && user === null) ||
     (workoutsLoading && !workouts.length)
   ) {
     return <Spinner />;
@@ -107,40 +114,39 @@ const Profile = ({
       <InfoBox>
         <InfoContainer>
           <HeadingContainer>
-            <H3 color="primary">{`${user?.firstName} ${user?.lastName}`}</H3>
+            <H3 color="primary">{`${profile?.user?.firstName} ${profile?.user?.lastName}`}</H3>
           </HeadingContainer>
           <StatsContainer>
-            <Image src={`/assets/${user?.avatar}.png`} alt="user avatar" />
+            <Image src={`/assets/${profile?.avatar}.png`} alt="user avatar" />
           </StatsContainer>
         </InfoContainer>
       </InfoBox>
-      {isAuthenticated && <Button>Edit Profile</Button>}
       <DetailsContainer>
         <Row>
           <DetailsSegment>
             <ProfileLabel>Daily Calories Goal:</ProfileLabel>
             <Copy large color="primary">
-              {profile.dailyCaloriesGoal}
+              {profile?.dailyCaloriesGoal}
             </Copy>
           </DetailsSegment>
         </Row>
         <Row>
           <DetailsSegment>
             <ProfileLabel>Bio:</ProfileLabel>
-            <Copy>{profile.bio}</Copy>
+            <Copy>{profile?.bio}</Copy>
           </DetailsSegment>
         </Row>
         <Row>
           <DetailsSegment>
             <ProfileLabel>Activities:</ProfileLabel>
-            <Copy>{profile.activities.join(', ')}</Copy>
+            <Copy>{profile?.activities.join(', ')}</Copy>
           </DetailsSegment>
         </Row>
         <Row>
           <DetailsSegment>
             <ProfileLabel>Member Since:</ProfileLabel>
             <Copy>
-              <Moment format="MMM Do, YYYY">{user.date}</Moment>
+              <Moment format="MMM Do, YYYY">{profile?.user?.date}</Moment>
             </Copy>
           </DetailsSegment>
         </Row>
@@ -151,25 +157,34 @@ const Profile = ({
           </DetailsSegment>
         </Row>
       </DetailsContainer>
+
+      <ContentContainer>
+        <H3>{profile?.user?.firstName}'s Workouts</H3>
+        <Divider color="grey" />
+        {workouts.length
+          ? workouts.map(workout => (
+              <Workout profile={profile} workout={workout} key={workout._id} />
+            ))
+          : null}
+      </ContentContainer>
     </Container>
   );
 };
 
-Profile.propTypes = {
+ProfileById.propTypes = {
   profile: PropTypes.object,
   getProfile: PropTypes.func,
-  user: PropTypes.object,
   getWorkoutsByUser: PropTypes.func,
   workouts: PropTypes.array,
+  match: PropTypes.object,
 };
 
-const mapState = ({ profile, user, workout }) => ({
+const mapState = ({ profile, workout }) => ({
   profile,
-  user,
   workouts: workout,
 });
 
 export default connect(mapState, {
   getProfile: getProfileAction,
   getWorkoutsByUser: getWorkoutsByUserAction,
-})(Profile);
+})(ProfileById);

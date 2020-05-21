@@ -130,12 +130,12 @@ const SignUp = ({ createUser, isAuthenticated }) => {
 
   return (
     <Container>
-      <H3 fontColor="primary">Sign Up For An Account</H3>
+      <H3 color="primary">Sign Up For An Account</H3>
       <Divider color="grey" />
       <FormContainer onSubmit={onSubmit}>
         <FormGroup>
           <FormSection>
-            <H4 fontColor="primary">Credentials</H4>
+            <H4 color="primary">Credentials</H4>
             <TextInput
               type="text"
               id="firstName"
@@ -150,7 +150,7 @@ const SignUp = ({ createUser, isAuthenticated }) => {
               value={lastName}
               onChange={onChange}
             />
-            <Copy fontColor="white">
+            <Copy color="white">
               Please enter an email that hasn't already been registered
             </Copy>
             <TextInput
@@ -160,7 +160,7 @@ const SignUp = ({ createUser, isAuthenticated }) => {
               value={email}
               onChange={onChange}
             />
-            <Copy fontColor="white">Please enter a unique password</Copy>
+            <Copy color="white">Please enter a unique password</Copy>
             <TextInput
               type="password"
               id="password"
@@ -175,7 +175,7 @@ const SignUp = ({ createUser, isAuthenticated }) => {
               value={password2}
               onChange={onChange}
             />
-            <Copy fontColor="white">Please select an avatar</Copy>
+            <Copy color="white">Please select an avatar</Copy>
             <AvatarContainer>
               {avatarList.map(({ avatar: avatarType }) => (
                 <Avatar

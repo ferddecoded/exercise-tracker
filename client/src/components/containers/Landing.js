@@ -125,7 +125,7 @@ const Landing = ({ loginUser, isAuthenticated }) => {
       <Container as="section">
         <Row>
           <LoginContainer as="form" onSubmit={onSubmit}>
-            <H3 fontColor="primary">Gymie</H3>
+            <H3 color="primary">Gymie</H3>
             <Divider color="grey" />
             <InputContainer>
               <TextInput

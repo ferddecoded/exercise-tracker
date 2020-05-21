@@ -80,7 +80,7 @@ const App = () => {
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/sign-up" component={SignUp} />
-                <Route path="/" component={Landing} />
+                <Route exact path="/" component={Landing} />
               </AppWrapper>
             </Switch>
           </AppContainer>

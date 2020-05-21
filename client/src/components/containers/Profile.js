@@ -90,7 +90,7 @@ const Profile = ({ getProfile, profile, user }) => {
       <InfoBox>
         <InfoContainer>
           <HeadingContainer>
-            <H3 fontColor="primary">{`${user?.firstName} ${user?.lastName}`}</H3>
+            <H3 color="primary">{`${user?.firstName} ${user?.lastName}`}</H3>
           </HeadingContainer>
           <StatsContainer>
             <Image src={`/assets/${user?.avatar}.png`} alt="user avatar" />

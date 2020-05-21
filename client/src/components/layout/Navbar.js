@@ -37,7 +37,7 @@ const Navbar = ({ auth: { isAuthenticated, loading } }) => (
     <AppWrapper>
       <Row>
         <LogoContainer>
-          <TextLink href="#" fontColor="#3A3A3A">
+          <TextLink href="#" color="#3A3A3A">
             <Icon
               className="fas fa-dumbbell"
               fontSize="40px"

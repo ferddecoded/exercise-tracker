@@ -72,12 +72,12 @@ const Workout = ({ profile, workout }) => {
             src={profile?.avatar && `/assets/${profile.avatar}.png`}
             alt="avatar image"
           />
-          <StyledH4 fontColor="primary">{workout.caloriesBurned}</StyledH4>
-          <H6 fontColor="primary">Calories</H6>
+          <StyledH4 color="primary">{workout.caloriesBurned}</StyledH4>
+          <H6 color="primary">Calories</H6>
         </AvatarContainer>
         <Divider color="grey" vertical />
         <DetailsContainer>
-          <H4 fontColor="primary">{`${profile.user.firstName} ${profile.user.lastName}`}</H4>
+          <H4 color="primary">{`${profile.user.firstName} ${profile.user.lastName}`}</H4>
           <Row>
             <WorkoutLabel>Description</WorkoutLabel>
             <Copy>{workout?.description}</Copy>

@@ -9,11 +9,11 @@ export const TextLink = styled(({ routerLink, children, ...rest }) =>
   display: flex;
   align-items: center;
   border-bottom: 5px solid transparent;
-  color: ${({ theme, fontColor }) => fontColor || theme.primaryColor};
+  color: ${({ theme, color }) => color || theme.primaryColor};
   transition: ${({ theme }) => theme.defaultTransition};
 
   &:hover {
     border-bottom: 5px solid
-      ${({ theme, fontColor }) => fontColor || theme.primaryColor};
+      ${({ theme, color }) => color || theme.primaryColor};
   }
 `;

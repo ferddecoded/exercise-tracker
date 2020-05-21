@@ -12,6 +12,7 @@ import { Copy } from '../typography/Copy';
 import ProgressRing from '../charts/ProgressRing';
 import { Divider } from '../layout/Divider';
 import Workout from '../workout/Workout';
+import Spinner from '../layout/Spinner';
 
 const ContentContainer = styled.div`
   margin-top: 48px;
@@ -78,9 +79,9 @@ const StyledCopy = styled(Copy)`
 
 const Dashboard = ({
   getProfile,
-  profile,
-  user,
-  workouts,
+  profile: { profile, loading: profileLoading },
+  user: { user, loading: userLoading },
+  workouts: { workouts, loading: workoutsLoading },
   getWorkoutsByUser,
 }) => {
   const [progress, setProgress] = useState(0);
@@ -112,17 +113,25 @@ const Dashboard = ({
     }
   }, [getProfile, getWorkoutsByUser, user]);
 
+  if (
+    (profileLoading && profile === null) ||
+    (userLoading && user === null) ||
+    (workoutsLoading && !workouts.length)
+  ) {
+    return <Spinner />;
+  }
+
   return (
     <Container>
       <InfoBox>
         <InfoContainer>
           <HeadingContainer>
-            <H3 fontColor="#3A3A3A">Your Daily Progress</H3>
+            <H3 color="#3A3A3A">Your Daily Progress</H3>
           </HeadingContainer>
           <StatsContainer>
             <StatsBox>
-              <H4 fontColor="#3A3A3A">Your Goal Burn</H4>
-              <StyledCopy fontColor="#3A3A3A" large>
+              <H4 color="#3A3A3A">Your Goal Burn</H4>
+              <StyledCopy color="#3A3A3A" large>
                 {profile?.dailyCaloriesGoal}
               </StyledCopy>
             </StatsBox>
@@ -130,8 +139,8 @@ const Dashboard = ({
               <ProgressRing progress={progress} size={250} strokeSize={30} />
             </div>
             <StatsBox>
-              <H4 fontColor="#3A3A3A">Today's Burn</H4>
-              <StyledCopy fontColor="#3A3A3A" large>
+              <H4 color="#3A3A3A">Today's Burn</H4>
+              <StyledCopy color="#3A3A3A" large>
                 {todaysCaloriesBurn || 0}
               </StyledCopy>
             </StatsBox>
@@ -161,9 +170,9 @@ Dashboard.propTypes = {
 };
 
 const mapState = ({ profile, user, workout }) => ({
-  profile: profile.profile,
-  user: user?.user,
-  workouts: workout?.workouts,
+  profile,
+  user,
+  workouts: workout,
 });
 
 export default connect(mapState, {

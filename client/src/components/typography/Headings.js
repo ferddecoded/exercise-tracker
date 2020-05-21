@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const H1 = styled.h1`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 80px;
   @media (max-width: 768px) {
@@ -17,14 +17,14 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 60px;
   @media (max-width: 768px) {
@@ -33,14 +33,14 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 44px;
   @media (max-width: 768px) {
@@ -49,14 +49,14 @@ export const H3 = styled.h3`
 `;
 
 export const H4 = styled.h4`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 32px;
   @media (max-width: 768px) {
@@ -65,14 +65,14 @@ export const H4 = styled.h4`
 `;
 
 export const H5 = styled.h5`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 24px;
   @media (max-width: 768px) {
@@ -81,14 +81,14 @@ export const H5 = styled.h5`
 `;
 
 export const H6 = styled.h6`
-  color: ${({ fontColor, theme }) => {
-    if (fontColor === 'primary') {
+  color: ${({ color, theme }) => {
+    if (color === 'primary') {
       return theme.primaryColor;
     }
-    if (fontColor === 'tertiary') {
+    if (color === 'tertiary') {
       return theme.primaryWhite;
     }
-    return fontColor;
+    return color;
   }};
   font-size: 18px;
   @media (max-width: 768px) {

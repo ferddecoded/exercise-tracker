@@ -79,7 +79,11 @@ const Workout = ({ workout }) => {
         </AvatarContainer>
         <Divider color="grey" vertical />
         <DetailsContainer>
-          <H4 color="primary">{`${workout.user.firstName} ${workout.user.lastName}`}</H4>
+          <H4 color="primary">{`${workout?.name}`}</H4>
+          <Row>
+            <WorkoutLabel>Author</WorkoutLabel>
+            <Copy>{`${workout.user.firstName} ${workout.user.lastName}`}</Copy>
+          </Row>
           <Row>
             <WorkoutLabel>Description</WorkoutLabel>
             <Copy>{workout?.description}</Copy>
@@ -107,7 +111,9 @@ const Workout = ({ workout }) => {
         </DetailsContainer>
       </WorkoutContainer>
       <ActionsContainer>
-        <ButtonLink>View</ButtonLink>
+        <ButtonLink routerLink to={`/workout/${workout._id}`}>
+          View
+        </ButtonLink>
       </ActionsContainer>
     </Container>
   );

@@ -77,6 +77,7 @@ router.post(
     auth,
     check('description', 'Description is required'),
     check('caloriesBurned', 'caloriesBurned is required'),
+    check('name', 'name is required'),
   ],
   async (req, res) => {
     // check for errors in request
@@ -87,12 +88,13 @@ router.post(
     }
 
     try {
-      const { description, caloriesBurned, exercises } = req.body;
+      const { description, caloriesBurned, exercises, name } = req.body;
 
       const workoutFields = {
         description,
         caloriesBurned,
         exercises,
+        name,
         user: req.user.id,
       };
 
@@ -118,6 +120,7 @@ router.patch(
     auth,
     check('description', 'Description is required'),
     check('caloriesBurned', 'caloriesBurned is required'),
+    check('name', 'name is required'),
   ],
   async (req, res) => {
     // check for errors in request
@@ -128,12 +131,13 @@ router.patch(
     }
 
     try {
-      const { description, caloriesBurned, exercises } = req.body;
+      const { description, caloriesBurned, exercises, name } = req.body;
 
       const workoutFields = {
         description,
         caloriesBurned,
         exercises,
+        name,
         user: req.user.id,
       };
 

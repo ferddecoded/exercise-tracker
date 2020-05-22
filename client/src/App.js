@@ -22,6 +22,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Profile from './components/containers/Profile';
 import ProfileById from './components/containers/ProfileById';
 import CommunityWorkouts from './components/containers/CommunityWorkouts';
+import Users from './components/containers/Users';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -86,6 +87,7 @@ const App = () => {
                   path="/community-workouts"
                   component={CommunityWorkouts}
                 />
+                <Route exact path="/users" component={Users} />
                 <Route exact path="/profile/:userId" component={ProfileById} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/" component={Landing} />

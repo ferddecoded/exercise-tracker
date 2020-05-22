@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-  display: Block;
+  display: block;
   width: 100%;
 `;

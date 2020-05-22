@@ -12,6 +12,7 @@ import { Column } from '../grid/Column';
 import { Divider } from '../layout/Divider';
 import { Image } from '../image/Image';
 import Workouts from '../workout/Workouts';
+import Spinner from '../layout/Spinner';
 
 const Container = styled.div`
   margin-top: 48px;
@@ -45,11 +46,15 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
-const CommunityWorkouts = ({ getWorkouts, workouts }) => {
+const CommunityWorkouts = ({ getWorkouts, workout: { workouts, loading } }) => {
   useEffect(() => {
     getWorkouts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading && !workouts?.length) {
+    return <Spinner />;
+  }
   return (
     <>
       <Container as="section">
@@ -71,12 +76,12 @@ const CommunityWorkouts = ({ getWorkouts, workouts }) => {
 
 CommunityWorkouts.propTypes = {
   getWorkouts: PropTypes.func,
-  workouts: PropTypes.array,
+  workout: PropTypes.object,
 };
 
 const mapState = state => ({
   isAuthenticated: state?.user.isAuthenticated,
-  workouts: state?.workout?.workouts,
+  workout: state?.workout,
 });
 
 export default connect(mapState, { getWorkouts: getWorkoutsAction })(

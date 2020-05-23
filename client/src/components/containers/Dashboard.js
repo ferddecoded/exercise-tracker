@@ -124,7 +124,7 @@ const Dashboard = ({
             <StatsBox>
               <H4 color="#3A3A3A">Your Goal Burn</H4>
               <StyledCopy color="#3A3A3A" large>
-                {profile?.dailyCaloriesGoal}
+                {profile?.dailyCaloriesGoal || 0}
               </StyledCopy>
             </StatsBox>
             <div>

@@ -24,6 +24,7 @@ import ProfileById from './components/containers/ProfileById';
 import CommunityWorkouts from './components/containers/CommunityWorkouts';
 import Users from './components/containers/Users';
 import Workout from './components/containers/Workout';
+import EditProfile from './components/containers/EditProfile';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -93,6 +94,11 @@ const App = () => {
                 <Route exact path="/profile/:userId" component={ProfileById} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile/:id"
+                  component={EditProfile}
+                />
               </AppWrapper>
             </Switch>
           </AppContainer>

@@ -5,4 +5,6 @@ import { Button } from '../buttons/Button';
 
 export const ButtonLink = styled(({ routerLink, ...rest }) => (
   <Button as={!routerLink ? 'a' : RouterLink} {...rest} />
-))``;
+))`
+  display: inline-block;
+`;

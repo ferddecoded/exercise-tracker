@@ -63,7 +63,7 @@ const Label = styled('label')`
 export const TextInput = ({ label, id, value, onChange, type }) => (
   <Container>
     <Input type={type} id={id} onChange={onChange} value={value} name={id} />
-    <Label htmlFor={id}>{label}</Label>
+    {label && <Label htmlFor={id}>{label}</Label>}
   </Container>
 );
 

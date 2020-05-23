@@ -14,7 +14,7 @@ import { Icon } from '../typography/Icon';
 import { Divider } from '../layout/Divider';
 import { Copy } from '../typography/Copy';
 import { Image } from '../image/Image';
-import { TextInput } from '../formInputs/TextInput';
+import { TextInput } from '../forms/TextInput';
 import { TextLink } from '../link/TextLink';
 import { Button } from '../buttons/Button';
 

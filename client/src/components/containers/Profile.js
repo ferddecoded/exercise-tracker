@@ -14,7 +14,8 @@ import { Image } from '../image/Image';
 import Spinner from '../layout/Spinner';
 import { Column } from '../grid/Column';
 import { Row } from '../grid/Row';
-import { Button } from '../buttons/Button';
+import { ButtonLink } from '../link/ButtonLink';
+import Label from '../forms/Label';
 
 const Container = styled(Box)`
   padding: 48px 0px;
@@ -71,12 +72,7 @@ const DetailsSegment = styled(Column)`
 
 const DetailsContainer = styled(Row)``;
 
-const ProfileLabel = styled(H6)`
-  background-color: ${({ theme }) => theme.darkerGrey};
-  margin: 12px 12px 12px 0px;
-  padding: 12px;
-  display: inline-block;
-  border-radius: 5px;
+const ProfileLabel = styled(Label)`
   width: 33.33%;
 `;
 
@@ -102,6 +98,57 @@ const Profile = ({
     return <Spinner />;
   }
 
+  const noProfileButton = (
+    <ButtonLink routerLink to={`/edit-profile/${profile?.user?._id}`}>
+      Create Profile
+    </ButtonLink>
+  );
+
+  const existingProfileButton = (
+    <ButtonLink routerLink to={`/edit-profile/${profile?.user?._id}`}>
+      Edit Profile
+    </ButtonLink>
+  );
+
+  const existingProfile = (
+    <>
+      <Row>
+        <DetailsSegment>
+          <ProfileLabel>Daily Calories Goal:</ProfileLabel>
+          <Copy large color="primary">
+            {profile?.dailyCaloriesGoal}
+          </Copy>
+        </DetailsSegment>
+      </Row>
+      <Row>
+        <DetailsSegment>
+          <ProfileLabel>Bio:</ProfileLabel>
+          <Copy>{profile?.bio}</Copy>
+        </DetailsSegment>
+      </Row>
+      <Row>
+        <DetailsSegment>
+          <ProfileLabel>Activities:</ProfileLabel>
+          <Copy>{profile?.activities.join(', ')}</Copy>
+        </DetailsSegment>
+      </Row>
+      <Row>
+        <DetailsSegment>
+          <ProfileLabel>Member Since:</ProfileLabel>
+          <Copy>
+            <Moment format="MMM Do, YYYY">{user?.date}</Moment>
+          </Copy>
+        </DetailsSegment>
+      </Row>
+      <Row>
+        <DetailsSegment>
+          <ProfileLabel>Total Workouts:</ProfileLabel>
+          <Copy>{workouts?.length}</Copy>
+        </DetailsSegment>
+      </Row>
+    </>
+  );
+
   return (
     <Container>
       <InfoBox>
@@ -114,43 +161,45 @@ const Profile = ({
           </StatsContainer>
         </InfoContainer>
       </InfoBox>
-      {isAuthenticated && <Button>Edit Profile</Button>}
-      <DetailsContainer>
-        <Row>
-          <DetailsSegment>
-            <ProfileLabel>Daily Calories Goal:</ProfileLabel>
-            <Copy large color="primary">
-              {profile.dailyCaloriesGoal}
-            </Copy>
-          </DetailsSegment>
-        </Row>
-        <Row>
-          <DetailsSegment>
-            <ProfileLabel>Bio:</ProfileLabel>
-            <Copy>{profile.bio}</Copy>
-          </DetailsSegment>
-        </Row>
-        <Row>
-          <DetailsSegment>
-            <ProfileLabel>Activities:</ProfileLabel>
-            <Copy>{profile.activities.join(', ')}</Copy>
-          </DetailsSegment>
-        </Row>
-        <Row>
-          <DetailsSegment>
-            <ProfileLabel>Member Since:</ProfileLabel>
-            <Copy>
-              <Moment format="MMM Do, YYYY">{user.date}</Moment>
-            </Copy>
-          </DetailsSegment>
-        </Row>
-        <Row>
-          <DetailsSegment>
-            <ProfileLabel>Total Workouts:</ProfileLabel>
-            <Copy>{workouts.length}</Copy>
-          </DetailsSegment>
-        </Row>
-      </DetailsContainer>
+      {isAuthenticated && profile ? existingProfileButton : noProfileButton}
+      {profile && (
+        <DetailsContainer>
+          <Row>
+            <DetailsSegment>
+              <ProfileLabel>Daily Calories Goal:</ProfileLabel>
+              <Copy large color="primary">
+                {profile?.dailyCaloriesGoal}
+              </Copy>
+            </DetailsSegment>
+          </Row>
+          <Row>
+            <DetailsSegment>
+              <ProfileLabel>Bio:</ProfileLabel>
+              <Copy>{profile?.bio}</Copy>
+            </DetailsSegment>
+          </Row>
+          <Row>
+            <DetailsSegment>
+              <ProfileLabel>Activities:</ProfileLabel>
+              <Copy>{profile?.activities.join(', ')}</Copy>
+            </DetailsSegment>
+          </Row>
+          <Row>
+            <DetailsSegment>
+              <ProfileLabel>Member Since:</ProfileLabel>
+              <Copy>
+                <Moment format="MMM Do, YYYY">{user?.date}</Moment>
+              </Copy>
+            </DetailsSegment>
+          </Row>
+          <Row>
+            <DetailsSegment>
+              <ProfileLabel>Total Workouts:</ProfileLabel>
+              <Copy>{workouts?.length}</Copy>
+            </DetailsSegment>
+          </Row>
+        </DetailsContainer>
+      )}
     </Container>
   );
 };

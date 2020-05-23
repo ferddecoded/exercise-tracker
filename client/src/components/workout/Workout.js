@@ -11,6 +11,7 @@ import { Copy } from '../typography/Copy';
 import { Row } from '../grid/Row';
 import { Column } from '../grid/Column';
 import { ButtonLink } from '../link/ButtonLink';
+import Label from '../forms/Label';
 
 const Container = styled(Row)`
   width: 90%;
@@ -44,14 +45,6 @@ const StyledH4 = styled(H4)`
   border-radius: 5px;
 `;
 
-const WorkoutLabel = styled(H6)`
-  background-color: ${({ theme }) => theme.darkerGrey};
-  margin: 12px 12px 12px 0px;
-  padding: 12px;
-  display: inline-block;
-  border-radius: 5px;
-`;
-
 const ActionsContainer = styled(Column)`
   width: 15%;
   padding: 0px;
@@ -81,19 +74,19 @@ const Workout = ({ workout }) => {
         <DetailsContainer>
           <H4 color="primary">{`${workout?.name}`}</H4>
           <Row>
-            <WorkoutLabel>Author</WorkoutLabel>
+            <Label>Author</Label>
             <Copy>{`${workout.user.firstName} ${workout.user.lastName}`}</Copy>
           </Row>
           <Row>
-            <WorkoutLabel>Description</WorkoutLabel>
+            <Label>Description</Label>
             <Copy>{workout?.description}</Copy>
           </Row>
           <Row>
-            <WorkoutLabel>Exercises</WorkoutLabel>
+            <Label>Exercises</Label>
             <Copy>{workout?.exercises?.length} total exercise(s)</Copy>
           </Row>
           <Row>
-            <WorkoutLabel>Sets</WorkoutLabel>
+            <Label>Sets</Label>
             <Copy>
               {workout?.exercises?.reduce(
                 (acc, curr) => acc + curr.routine.length,
@@ -103,7 +96,7 @@ const Workout = ({ workout }) => {
             </Copy>
           </Row>
           <Row>
-            <WorkoutLabel>Date</WorkoutLabel>
+            <Label>Date</Label>
             <Copy>
               <Moment format="MMM Do, YYYY">{workout.date}</Moment>
             </Copy>

@@ -8,7 +8,7 @@ import { H3, H4 } from '../typography/Headings';
 import { Copy } from '../typography/Copy';
 import { Divider } from '../layout/Divider';
 import Workout from '../svg/Workout';
-import { TextInput } from '../formInputs/TextInput';
+import { TextInput } from '../forms/TextInput';
 import { Button } from '../buttons/Button';
 import { Box } from '../grid/Box';
 import { Row } from '../grid/Row';

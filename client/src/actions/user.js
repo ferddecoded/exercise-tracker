@@ -81,7 +81,6 @@ export const createUser = formData => async dispatch => {
     dispatch(loadUser());
   } catch (error) {
     const { errors } = error?.response?.data;
-    console.log({ errors });
 
     if (errors) {
       errors.forEach((error, i) =>

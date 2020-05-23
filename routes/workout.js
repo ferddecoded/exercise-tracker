@@ -75,15 +75,22 @@ router.post(
   '/',
   [
     auth,
-    check('description', 'Description is required'),
-    check('caloriesBurned', 'caloriesBurned is required'),
-    check('name', 'name is required'),
+    check('description', 'Description is required')
+      .not()
+      .isEmpty(),
+    check('caloriesBurned', 'caloriesBurned is required')
+      .not()
+      .isEmpty(),
+    check('name', 'name is required')
+      .not()
+      .isEmpty(),
   ],
   async (req, res) => {
     // check for errors in request
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
+      console.log({ errors: errors.array() });
       return res.status(400).json({ errors: errors.array() });
     }
 

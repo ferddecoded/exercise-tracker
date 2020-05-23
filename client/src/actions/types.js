@@ -15,3 +15,4 @@ export const GET_WORKOUTS = 'GET_WORKOUTS';
 export const WORKOUT_ERROR = 'WORKOUT_ERROR';
 export const CLEAR_WORKOUT = 'CLEAR_WORKOUT';
 export const LOGOUT = 'LOGOUT';
+export const POST_WORKOUT = 'POST_WORKOUT';

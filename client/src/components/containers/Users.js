@@ -50,14 +50,19 @@ const StyledImage = styled(Image)`
 
 const ProfilesContainer = styled(Row)`
   justify-content: center;
+  padding: 48px 0px;
+  align-items: stretch;
 `;
 
 const ProfileContainer = styled(Column)`
   width: calc(33.33% - 24px);
-  margin: 48px 12px;
+  margin: 12px 12px;
   background-color: ${({ theme }) => theme.grey};
   border-radius: 5px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const AvatarContainer = styled(Box)`
@@ -94,18 +99,20 @@ const Users = ({ getProfiles, profile: { profiles, loading } }) => {
       <ProfilesContainer as="section">
         {profiles.length
           ? profiles.map(profile => (
-              <ProfileContainer>
+              <ProfileContainer key={profile._id}>
                 <AvatarContainer>
                   <Image
                     src={`/assets/${profile.user.avatar}.png`}
                     alt={`avatar image of ${profile.user.avatar}`}
                   />
                 </AvatarContainer>
-                <H3>{`${profile.user.firstName} ${profile.user.lastName}`}</H3>
-                <Copy>
-                  Member Since:{' '}
-                  <Moment format="MMM Do, YYYY">{profile?.user?.date}</Moment>
-                </Copy>
+                <Box>
+                  <H3>{`${profile.user.firstName} ${profile.user.lastName}`}</H3>
+                  <Copy>
+                    Member Since:{' '}
+                    <Moment format="MMM Do, YYYY">{profile?.user?.date}</Moment>
+                  </Copy>
+                </Box>
                 <ButtonContainer>
                   <ButtonLink routerLink to={`/profile/${profile.user._id}`}>
                     View Profile

@@ -9,6 +9,10 @@ const WorkoutSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,

@@ -12,6 +12,7 @@ import { Copy } from '../typography/Copy';
 import ProgressRing from '../charts/ProgressRing';
 import Workouts from '../workout/Workouts';
 import Spinner from '../layout/Spinner';
+import { ButtonLink } from '../link/ButtonLink';
 
 const Container = styled(Box)`
   padding: 48px 0px;
@@ -139,6 +140,10 @@ const Dashboard = ({
           </StatsContainer>
         </InfoContainer>
       </InfoBox>
+
+      <ButtonLink routerLink to="/create-workout">
+        Add Workout
+      </ButtonLink>
 
       <Workouts profile={profile} workouts={workouts} />
     </Container>

@@ -25,6 +25,7 @@ import CommunityWorkouts from './components/containers/CommunityWorkouts';
 import Users from './components/containers/Users';
 import Workout from './components/containers/Workout';
 import EditProfile from './components/containers/EditProfile';
+import CreateWorkout from './components/containers/CreateWorkout';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -98,6 +99,11 @@ const App = () => {
                   exact
                   path="/edit-profile/:id"
                   component={EditProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/create-workout"
+                  component={CreateWorkout}
                 />
               </AppWrapper>
             </Switch>

@@ -117,7 +117,10 @@ const ProfileById = ({
             <H3 color="primary">{`${profile?.user?.firstName} ${profile?.user?.lastName}`}</H3>
           </HeadingContainer>
           <StatsContainer>
-            <Image src={`/assets/${profile?.avatar}.png`} alt="user avatar" />
+            <Image
+              src={`/assets/${profile?.user?.avatar}.png`}
+              alt="user avatar"
+            />
           </StatsContainer>
         </InfoContainer>
       </InfoBox>

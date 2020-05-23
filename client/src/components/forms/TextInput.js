@@ -7,7 +7,8 @@ const Container = styled.div`
   line-height: 14px;
   margin: 0px;
   display: inline-block;
-  width: 90%;
+  width: 100%;
+  padding: 0px 12px;
 `;
 
 const Input = styled.input`

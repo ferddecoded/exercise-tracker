@@ -7,7 +7,7 @@ import Moment from 'react-moment';
 import { getProfile as getProfileAction } from '../../actions/profile';
 import { getWorkoutsByUser as getWorkoutsByUserAction } from '../../actions/workout';
 
-import { H6, H3 } from '../typography/Headings';
+import { H3 } from '../typography/Headings';
 import { Box } from '../grid/Box';
 import { Copy } from '../typography/Copy';
 import { Image } from '../image/Image';
@@ -108,45 +108,6 @@ const Profile = ({
     <ButtonLink routerLink to={`/edit-profile/${profile?.user?._id}`}>
       Edit Profile
     </ButtonLink>
-  );
-
-  const existingProfile = (
-    <>
-      <Row>
-        <DetailsSegment>
-          <ProfileLabel>Daily Calories Goal:</ProfileLabel>
-          <Copy large color="primary">
-            {profile?.dailyCaloriesGoal}
-          </Copy>
-        </DetailsSegment>
-      </Row>
-      <Row>
-        <DetailsSegment>
-          <ProfileLabel>Bio:</ProfileLabel>
-          <Copy>{profile?.bio}</Copy>
-        </DetailsSegment>
-      </Row>
-      <Row>
-        <DetailsSegment>
-          <ProfileLabel>Activities:</ProfileLabel>
-          <Copy>{profile?.activities.join(', ')}</Copy>
-        </DetailsSegment>
-      </Row>
-      <Row>
-        <DetailsSegment>
-          <ProfileLabel>Member Since:</ProfileLabel>
-          <Copy>
-            <Moment format="MMM Do, YYYY">{user?.date}</Moment>
-          </Copy>
-        </DetailsSegment>
-      </Row>
-      <Row>
-        <DetailsSegment>
-          <ProfileLabel>Total Workouts:</ProfileLabel>
-          <Copy>{workouts?.length}</Copy>
-        </DetailsSegment>
-      </Row>
-    </>
   );
 
   return (

@@ -85,7 +85,6 @@ const EditProfile = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    console.log(profile);
     if (profile) {
       if (_.isEqual(formData, profile)) {
         setAlert('You have not made any changes', 'danger', 2000);

@@ -12,6 +12,7 @@ import { Image } from '../image/Image';
 import Spinner from '../layout/Spinner';
 import { Row } from '../grid/Row';
 import { Box } from '../grid/Box';
+import { TextLink } from '../link/TextLink';
 
 const Container = styled.div`
   margin-top: 48px;
@@ -23,6 +24,16 @@ const Container = styled.div`
 const AvatarColumn = styled(Column)`
   width: 25%;
   margin: 48px auto;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+`;
+
+const StyledRow = styled(Row)`
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const DetailsSegment = styled(Column)`
@@ -44,6 +55,10 @@ const Label = styled(H6)`
   display: inline-block;
   border-radius: 5px;
   width: 33.33%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const RoutineNumberSegment = styled(Box)`
@@ -108,22 +123,32 @@ const Workout = ({
         />
       </AvatarColumn>
       <DetailsSegment>
-        <Row>
-          <Label as="h2">Description:</Label>
-          <Copy>{workout?.description}</Copy>
-        </Row>
-        <Row>
+        <StyledRow>
           <Label as="h2">Calories Burned:</Label>
           <Copy color="primary" large>
             {workout?.caloriesBurned}
           </Copy>
-        </Row>
-        <Row>
+        </StyledRow>
+        <StyledRow>
+          <Label as="h2">Description:</Label>
+          <Copy>{workout?.description}</Copy>
+        </StyledRow>
+        <StyledRow>
+          <Label as="h2">Author:</Label>
+          <TextLink
+            to={`/profile/${workout?.user?._id}`}
+            routerLink
+            color=" #E1E1E1"
+          >
+            {workout?.user?.firstName} {workout?.user?.lastName}
+          </TextLink>
+        </StyledRow>
+        <StyledRow>
           <H3>Exercises</H3>
           <Divider color="grey" />
           {workout?.exercises?.length &&
             workout.exercises.map(({ routine, name }, index) => (
-              <Row>
+              <StyledRow>
                 <RoutineNumberSegment>
                   <NumberCopy large>{index + 1}</NumberCopy>
                 </RoutineNumberSegment>
@@ -137,9 +162,9 @@ const Workout = ({
                     </RoutineRow>
                   ))}
                 </RoutineSegment>
-              </Row>
+              </StyledRow>
             ))}
-        </Row>
+        </StyledRow>
       </DetailsSegment>
     </Container>
   );

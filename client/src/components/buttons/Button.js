@@ -9,8 +9,8 @@ export const Button = styled.button`
   border: 2px solid ${({ theme }) => theme.grey};
   color: ${({ theme }) => theme.grey};
   background-color: ${({ theme }) => theme.primaryColor};
-
   font-size: 16px;
+
   @media (max-width: 768px) {
     font-size: 14px;
   }
@@ -19,6 +19,10 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.grey};
     color: ${({ theme }) => theme.primaryColor};
     border: 2px solid ${({ theme }) => theme.primaryColor};
+
+    i {
+      color: ${({ theme }) => theme.primaryColor};
+    }
   }
 
   ${({ primary }) =>
@@ -32,6 +36,9 @@ export const Button = styled.button`
         border: 2px solid ${({ theme }) => theme.grey};
         color: ${({ theme }) => theme.grey};
         background-color: ${({ theme }) => theme.primaryColor};
+        i {
+          color: ${({ theme }) => theme.grey};
+        }
       }
     `}
 `;

@@ -81,18 +81,18 @@ const App = () => {
             <Switch>
               <AppWrapper as="main">
                 <Alert />
-                <PrivateRoute exact path="/profile" component={Profile} />
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/users" component={Users} />
+                <Route exact path="/sign-up" component={SignUp} />
                 <Route
                   exact
                   path="/community-workouts"
                   component={CommunityWorkouts}
                 />
                 <Route exact path="/workout/:id" component={Workout} />
-                <Route exact path="/users" component={Users} />
                 <Route exact path="/profile/:userId" component={ProfileById} />
-                <Route exact path="/sign-up" component={SignUp} />
-                <Route exact path="/" component={Landing} />
+                <PrivateRoute exact path="/profile" component={Profile} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </AppWrapper>
             </Switch>
           </AppContainer>

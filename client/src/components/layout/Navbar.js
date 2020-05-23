@@ -33,6 +33,19 @@ const LinkItem = styled.li`
   align-items: center;
 `;
 
+const NavLinkCopy = styled(Copy)`
+  padding-top: 4px;
+  padding-left: 8px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const StyledButtonLink = styled(ButtonLink)`
+  display: flex;
+  align-items: center;
+`;
+
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const onClick = () => {
     logout();
@@ -42,7 +55,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <AppWrapper>
         <Row>
           <LogoContainer>
-            <TextLink href="#" color="#3A3A3A">
+            <TextLink to="/" routerLink color="#3A3A3A">
               <Icon
                 className="fas fa-dumbbell"
                 fontSize="40px"
@@ -54,52 +67,57 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           {!loading && !isAuthenticated ? (
             <LinkList>
               <LinkItem>
-                <ButtonLink to="/users" primary="true" routerLink>
-                  <Copy>Users</Copy>
-                </ButtonLink>
+                <StyledButtonLink to="/users" primary="true" routerLink>
+                  <Icon className="fas fa-user-friends" fontSize="16px"></Icon>
+                  <NavLinkCopy>Users</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink to="/community-workouts" primary="true" routerLink>
-                  <Copy>Community</Copy>
-                </ButtonLink>
-              </LinkItem>
-              <LinkItem>
-                <ButtonLink to="/" primary="true" routerLink>
-                  <Copy>Log In</Copy>
-                </ButtonLink>
-              </LinkItem>
-              <LinkItem>
-                <ButtonLink to="/sign-up" primary="true" routerLink>
-                  <Copy>Sign Up</Copy>
-                </ButtonLink>
+                <StyledButtonLink
+                  to="/community-workouts"
+                  primary="true"
+                  routerLink
+                >
+                  <Icon className="fas fa-users" fontSize="16px"></Icon>
+                  <NavLinkCopy>Community</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
             </LinkList>
           ) : (
             <LinkList>
               <LinkItem>
-                <ButtonLink to="/users" primary="true" routerLink>
-                  <Copy>Users</Copy>
-                </ButtonLink>
+                <StyledButtonLink to="/users" primary="true" routerLink>
+                  <Icon className="fas fa-user-friends" fontSize="16px"></Icon>
+                  <NavLinkCopy>Users</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink to="/profile" primary="true" routerLink>
-                  <Copy>Profile</Copy>
-                </ButtonLink>
+                <StyledButtonLink
+                  to="/community-workouts"
+                  primary="true"
+                  routerLink
+                >
+                  <Icon className="fas fa-users" fontSize="16px"></Icon>
+                  <NavLinkCopy>Community</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink to="/community-workouts" primary="true" routerLink>
-                  <Copy>Community</Copy>
-                </ButtonLink>
+                <StyledButtonLink to="/profile" primary="true" routerLink>
+                  <Icon className="fas fa-user" fontSize="16px"></Icon>
+                  <NavLinkCopy>Profile</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink to="/dashboard" primary="true" routerLink>
-                  <Copy>Dashboard</Copy>
-                </ButtonLink>
+                <StyledButtonLink to="/dashboard" primary="true" routerLink>
+                  <Icon className="fas fa-edit" fontSize="16px"></Icon>
+                  <NavLinkCopy>Dashboard</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
               <LinkItem>
-                <ButtonLink onClick={onClick} href="#!" primary="true">
-                  <Copy>Log Out</Copy>
-                </ButtonLink>
+                <StyledButtonLink onClick={onClick} href="#!" primary="true">
+                  <Icon className="fas fa-sign-out-alt" fontSize="16px"></Icon>
+                  <NavLinkCopy>Log Out</NavLinkCopy>
+                </StyledButtonLink>
               </LinkItem>
             </LinkList>
           )}

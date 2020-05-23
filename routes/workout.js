@@ -50,7 +50,7 @@ router.get('/user/:id', async (req, res) => {
 // @desc    Get all workouts
 // @access  Public
 
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const workout = await Workout.findOne({
       _id: req.params.id,

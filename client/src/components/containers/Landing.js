@@ -25,6 +25,13 @@ const Container = styled.div`
   position: relative;
 `;
 
+const LoginRow = styled(Row)`
+  @media (max-width: 768px) {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 const LoginContainer = styled(Column)`
   width: 40%;
   display: flex;
@@ -37,6 +44,13 @@ const LoginContainer = styled(Column)`
   transform: translateY(-50%);
   border-radius: 5px;
   padding: 24px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    position: relative;
+    top: -100px;
+    transform: inherit;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -61,6 +75,10 @@ const ImageContainer = styled(Box)`
 const StyledImage = styled(Image)`
   width: 66.66%;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const InfoContainer = styled(Column)`
@@ -76,10 +94,16 @@ const InfoGroup = styled.ul`
   > li:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+  }
 `;
 
 const InfoItem = styled.li`
-  width: 100%;
+  width: calc(100% - 24px);
   background-color: ${({ theme }) => theme.grey};
   margin: 12px;
   padding: 12px;
@@ -88,6 +112,11 @@ const InfoItem = styled.li`
   flex-direction: column;
   align-items: center;
   height: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
 const InfoItemText = styled(Box)`
@@ -123,7 +152,10 @@ const Landing = ({ loginUser, isAuthenticated }) => {
   return (
     <>
       <Container as="section">
-        <Row>
+        <LoginRow>
+          <ImageContainer>
+            <StyledImage src="./assets/duotone.png" alt="Weights" />
+          </ImageContainer>
           <LoginContainer as="form" onSubmit={onSubmit}>
             <H3 color="primary">Gymie</H3>
             <Divider color="grey" />
@@ -154,10 +186,7 @@ const Landing = ({ loginUser, isAuthenticated }) => {
               </TextLink>
             </StyledCopy>
           </LoginContainer>
-          <ImageContainer>
-            <StyledImage src="./assets/duotone.png" alt="Weights" />
-          </ImageContainer>
-        </Row>
+        </LoginRow>
       </Container>
 
       <InfoContainer>

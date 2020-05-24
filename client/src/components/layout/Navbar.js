@@ -16,6 +16,12 @@ const Header = styled.header`
   background-color: ${({ theme }) => theme.primaryColor};
 `;
 
+const NavRow = styled(Row)`
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
 const LogoContainer = styled.div`
   padding: 12px 0px;
 `;
@@ -53,7 +59,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <Header>
       <AppWrapper>
-        <Row>
+        <NavRow>
           <LogoContainer>
             <TextLink to="/" routerLink color="#3A3A3A">
               <Icon
@@ -121,7 +127,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               </LinkItem>
             </LinkList>
           )}
-        </Row>
+        </NavRow>
       </AppWrapper>
     </Header>
   );

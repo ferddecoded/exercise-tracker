@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+
 import { Column } from '../grid/Column';
 import { H1, H2 } from '../typography/Headings';
 import { Divider } from '../layout/Divider';
@@ -293,6 +294,12 @@ const CreateWorkout = ({ postWorkout, history, setAlert }) => {
       </FormContainer>
     </Container>
   );
+};
+
+CreateWorkout.propTypes = {
+  postWorkout: PropTypes.func,
+  history: PropTypes.object,
+  setAlert: PropTypes.func,
 };
 
 export default connect(null, {

@@ -21,6 +21,13 @@ const Container = styled.div`
   position: relative;
 `;
 
+const HeroRow = styled(Row)`
+  @media (max-width: 768px) {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 const HeadingContainer = styled(Column)`
   width: 40%;
   display: flex;
@@ -33,6 +40,14 @@ const HeadingContainer = styled(Column)`
   transform: translateY(-50%);
   border-radius: 5px;
   padding: 24px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    position: relative;
+    top: -50px;
+    transform: inherit;
+    padding-bottom: 24px;
+  }
 `;
 
 const ImageContainer = styled(Box)`
@@ -44,6 +59,10 @@ const ImageContainer = styled(Box)`
 const StyledImage = styled(Image)`
   width: 66.66%;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const CommunityWorkouts = ({ getWorkouts, workout: { workouts, loading } }) => {
@@ -58,15 +77,15 @@ const CommunityWorkouts = ({ getWorkouts, workout: { workouts, loading } }) => {
   return (
     <>
       <Container as="section">
-        <Row>
+        <HeroRow>
+          <ImageContainer>
+            <StyledImage src="./assets/group-fitness.png" alt="Weights" />
+          </ImageContainer>
           <HeadingContainer>
             <H3 color="primary">Community Workouts</H3>
             <Divider color="grey" />
           </HeadingContainer>
-          <ImageContainer>
-            <StyledImage src="./assets/group-fitness.png" alt="Weights" />
-          </ImageContainer>
-        </Row>
+        </HeroRow>
       </Container>
 
       <Workouts workouts={workouts} community />

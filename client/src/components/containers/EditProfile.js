@@ -33,6 +33,12 @@ const ProfileContainer = styled(Box)`
   padding: 24px;
   margin: 24px;
   width: calc(100% - 48px);
+
+  @media (max-width: 768px) {
+    width: calc(100% - 24px);
+    margin: 14px;
+    padding: 12px;
+  }
 `;
 
 const InputRow = styled(Row)`

@@ -46,6 +46,9 @@ const DetailsSegment = styled(Column)`
   margin: 0 auto;
   padding-top: 12px;
   padding-bottom: 12px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Label = styled(H6)`
@@ -81,6 +84,10 @@ const NumberCopy = styled(Copy)`
 const RoutineSegment = styled(Box)`
   width: 90%;
   padding: 0px 24px 12px 24px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const RoutineRow = styled(Row)`
@@ -90,10 +97,17 @@ const RoutineRow = styled(Row)`
   border-radius: 5px;
   background-color: ${({ index, theme }) =>
     index % 2 === 0 && theme.darkerGrey};
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 12px;
+  }
 `;
 
 const RoutineCopy = styled(Copy)`
   width: 33.33%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Workout = ({
@@ -154,9 +168,8 @@ const Workout = ({
                 </RoutineNumberSegment>
                 <RoutineSegment>
                   <H4>{name}</H4>
-                  {routine.map(({ set, reps, weight }, routineIndex) => (
+                  {routine.map(({ reps, weight }, routineIndex) => (
                     <RoutineRow index={routineIndex + 2}>
-                      <RoutineCopy>Set#: 0{set}</RoutineCopy>
                       <RoutineCopy>Reps: {reps}</RoutineCopy>
                       <RoutineCopy>Weight: {weight}</RoutineCopy>
                     </RoutineRow>

@@ -20,6 +20,9 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.darkerGrey};
   padding: 24px;
   position: relative;
+  @media (max-width: 768px) {
+    padding: 12px 6px;
+  }
 `;
 
 const FormContainer = styled(Box)`
@@ -70,7 +73,7 @@ const RoutineNumberSegment = styled(Box)`
 
 const RoutineSegment = styled(Box)`
   width: 90%;
-  padding: 6px 24px 12px 24px;
+  padding: 6px 0px 12px 0px;
 `;
 
 const RoutineRow = styled(Row)`
@@ -79,6 +82,9 @@ const RoutineRow = styled(Row)`
   padding: 12px;
   background-color: ${({ index, theme }) =>
     index % 2 === 0 && theme.darkerGrey};
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const RoutineContainer = styled(Box)`
@@ -87,10 +93,17 @@ const RoutineContainer = styled(Box)`
 
 const RoutineDetailsContainer = styled(Row)`
   width: calc(95% - 50px);
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const RoutineDetailContainer = styled(Box)`
   width: 50%;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0px 0px 24px;
+  }
 `;
 
 const ButtonRow = styled(Row)`

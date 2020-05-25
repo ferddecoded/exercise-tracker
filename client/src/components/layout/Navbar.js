@@ -37,6 +37,12 @@ const LinkList = styled.ul`
 const LinkItem = styled.li`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    a {
+      margin: 6px;
+    }
+  }
 `;
 
 const NavLinkCopy = styled(Copy)`

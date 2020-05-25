@@ -34,6 +34,7 @@ const WorkoutContainer = styled(Box)`
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 `;
 

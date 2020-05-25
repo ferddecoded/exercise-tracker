@@ -42,7 +42,7 @@ router.post(
 
     try {
       // find user by email
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email: email.toLowerCase() });
 
       if (!user) {
         return res

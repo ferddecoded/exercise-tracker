@@ -47,6 +47,10 @@ const FormSection = styled.section`
   input {
     margin-bottom: 12px;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const AvatarContainer = styled(Row)``;

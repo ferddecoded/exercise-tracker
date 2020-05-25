@@ -53,7 +53,7 @@ router.post(
         firstName,
         lastName,
         password,
-        email,
+        email: email.toLowerCase(),
         avatar,
         // dailyCaloriesGoal,
       });

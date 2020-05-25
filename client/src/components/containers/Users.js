@@ -23,6 +23,13 @@ const Container = styled.div`
   position: relative;
 `;
 
+const HeroRow = styled(Row)`
+  @media (max-width: 768px) {
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 const HeadingContainer = styled(Column)`
   width: 40%;
   display: flex;
@@ -35,6 +42,14 @@ const HeadingContainer = styled(Column)`
   transform: translateY(-50%);
   border-radius: 5px;
   padding: 24px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    position: relative;
+    top: -50px;
+    transform: inherit;
+    padding-bottom: 24px;
+  }
 `;
 
 const ImageContainer = styled(Box)`
@@ -46,6 +61,10 @@ const ImageContainer = styled(Box)`
 const StyledImage = styled(Image)`
   width: 66.66%;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const ProfilesContainer = styled(Row)`
@@ -63,6 +82,10 @@ const ProfileContainer = styled(Column)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    width: calc(80% - 24px);
+  }
 `;
 
 const AvatarContainer = styled(Box)`
@@ -85,15 +108,15 @@ const Users = ({ getProfiles, profile: { profiles, loading } }) => {
   return (
     <>
       <Container as="section">
-        <Row>
+        <HeroRow>
+          <ImageContainer>
+            <StyledImage src="./assets/users.png" alt="two guys fist bumping" />
+          </ImageContainer>
           <HeadingContainer>
             <H3 color="primary">Users</H3>
             <Divider color="grey" />
           </HeadingContainer>
-          <ImageContainer>
-            <StyledImage src="./assets/users.png" alt="two guys fist bumping" />
-          </ImageContainer>
-        </Row>
+        </HeroRow>
       </Container>
 
       <ProfilesContainer as="section">

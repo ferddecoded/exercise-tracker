@@ -16,6 +16,11 @@ import Label from '../forms/Label';
 const Container = styled(Row)`
   width: 90%;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const WorkoutContainer = styled(Box)`
@@ -25,12 +30,22 @@ const WorkoutContainer = styled(Box)`
   display: flex;
   margin: 24px 0px;
   padding: 24px 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const AvatarContainer = styled(Column)`
   width: 25%;
   padding: 24px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 75%;
+    margin-bottom: 24px;
+  }
 `;
 
 const DetailsContainer = styled(Column)`

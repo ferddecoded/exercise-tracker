@@ -29,6 +29,10 @@ const InfoBox = styled(Box)`
   left: 50%;
   transform: translateX(-50%);
   padding: 12px;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 const InfoContainer = styled(Box)`
@@ -58,11 +62,19 @@ const StatsContainer = styled(Box)`
   align-items: center;
   margin: 24px 0px;
   width: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const StatsBox = styled(Box)`
   margin: 0px 48px;
   width: auto;
+
+  @media (max-width: 768px) {
+    margin: 48px 0px;
+  }
 `;
 
 const StyledCopy = styled(Copy)`

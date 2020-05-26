@@ -21,7 +21,7 @@ This is a fullstack application that utilizes the MERN framework. This app allow
 
 ## TODOs
 
-- adjust for responsiveness on mobile/tablet
+- adjust for responsiveness on mobile/tablet [**DONE**]
 - add deletion of user accounts
 - add deletion of workouts
 

@@ -25,4 +25,4 @@ This is a fullstack application that utilizes the MERN framework. This app allow
 - add deletion of user accounts
 - add deletion of workouts
 
-Live application: [GYMIE](https://peaceful-chamber-78096.herokuapp.com/)
+Live application: [GYMIE](https://gymie-app.herokuapp.com/)
